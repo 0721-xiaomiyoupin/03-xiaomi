@@ -23,6 +23,7 @@
     </div>
     <div class="search">
       <img src="../../assets/images/footer2.png" alt="" />
+
       <div class="H2">
         <h2>限时抢购</h2>
         <h2>企业采购</h2>
