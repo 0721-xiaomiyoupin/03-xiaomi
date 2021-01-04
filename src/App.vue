@@ -1,15 +1,18 @@
 <template>
   <div>
-    <Search />
+    <!-- <Search /> -->
+    <Order />
   </div>
 </template>
 
 <script>
 import Search from "./pages/Search";
+import Order from "./pages/Order";
 export default {
   name: "App",
   components: {
     Search,
+    Order,
   },
 };
 </script>
