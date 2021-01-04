@@ -1,0 +1,79 @@
+{
+  "id": "2307193",
+  "name": "实战项目",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "623435",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "1621998",
+      "name": "手机",
+      "font_class": "icon-technology-fn-phone",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "2130634",
+      "name": "礼物",
+      "font_class": "liwu",
+      "unicode": "e6aa",
+      "unicode_decimal": 59050
+    },
+    {
+      "icon_id": "5594581",
+      "name": "下箭头",
+      "font_class": "icon1",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7022184",
+      "name": "搜索--1",
+      "font_class": "search",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "8841806",
+      "name": "火箭",
+      "font_class": "huojian",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "10829546",
+      "name": "kefu (2)",
+      "font_class": "kefu",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "12154988",
+      "name": "二维码",
+      "font_class": "qrcode1",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "17686062",
+      "name": "头 像 ",
+      "font_class": "touxiang",
+      "unicode": "e6b1",
+      "unicode_decimal": 59057
+    },
+    {
+      "icon_id": "18212870",
+      "name": "购物车",
+      "font_class": "che-copy",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    }
+  ]
+}
