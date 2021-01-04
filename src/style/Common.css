@@ -1,0 +1,15 @@
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.container {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+span {
+    font-size: 14px;
+    color: #999;
+}
