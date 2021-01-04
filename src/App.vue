@@ -26,6 +26,6 @@ export default {
 
 <style lang="less">
 #a {
-  height: 1000px;
-}
+  height: 200px;
+} 
 </style>
