@@ -2,7 +2,7 @@
   <div class="search">
     <div class="search-container">
       <!-- 有搜索结果的 -->
-      <!-- <div class="result">
+      <!-- <div>
         <div class="search-result">为您找到n条结果</div>
         <div class="search-allItem">
           <div class="search-item">
@@ -246,22 +246,27 @@
         </div>
       </div> -->
       <!-- 无搜索结果的 -->
-      <div class="no-result">
-        <div>
-          <img class="./images/01search.png" />
+      <div>
+        <div class="no-result">
+          <div class="no-result-image"></div>
+          <p>抱歉，暂无任何商品</p>
+          <span>继续逛</span>
         </div>
-        <div class="search-allItem">
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
+        <div class="recommend">
+          <p class="recommend-p">为您推荐</p>
+          <div class="search-allItem">
+            <div class="search-item">
+              <div class="search-item-image">
+                <img
+                  src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
+                />
+              </div>
+              <p class="search-item-info">
+                COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
+                LIVING 石墨烯自发热阳绒
+              </p>
+              <p class="search-item-price">¥199</p>
             </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
           </div>
         </div>
       </div>
@@ -288,9 +293,46 @@ body {
 .search-container {
   width: 1080px;
   margin: 0 auto;
-}
-.result {
   padding: 30px 0;
+}
+.no-result {
+  padding-top: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.no-result-image {
+  width: 153px;
+  height: 132px;
+  margin: 0 auto;
+  background-image: url(./images/01search.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.no-result p {
+  margin-top: 24px;
+  color: #333;
+  font-size: 14px;
+}
+.no-result span {
+  margin-top: 21px;
+  width: 50px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 1px solid black;
+}
+.recommend {
+  margin-top: 100px;
+}
+.recommend-p {
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  padding: 20px 0;
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
 }
 .search-result {
   width: 100%;
@@ -331,6 +373,7 @@ body {
   text-overflow: ellipsis;
   height: 26px;
   line-height: 26px;
+  text-align: center;
   margin-top: 10px;
   color: #333;
   font-size: 16px;
