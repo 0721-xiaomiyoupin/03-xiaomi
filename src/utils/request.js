@@ -20,7 +20,9 @@ instance.interceptors.response.use(
   (response) => {
     // 进度条结束
     NProgress.done();
-    return response.data;
+    if (response.data.code === 200) {
+      return response.data.data;
+    }
   },
   (error) => {
     // 进度条结束

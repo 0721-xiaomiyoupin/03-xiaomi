@@ -270,6 +270,7 @@
           </div>
         </div>
       </div>
+      <router-link to="/order">点击</router-link>
     </div>
   </div>
 </template>

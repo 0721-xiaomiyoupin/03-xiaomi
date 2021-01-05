@@ -19,11 +19,9 @@
       >
         <div v-if="flag">
           <span>显示更多收货地址</span>
-          <a>W</a>
         </div>
         <div v-else>
           <span>收起更多收货地址</span>
-          <a>M</a>
         </div>
       </div>
       <!-- 底部信息 -->
@@ -36,13 +34,55 @@
           <div class="order-info-product">
             <img src="./images/shopmain.png" />
             <span class="order-info-product-name">
-              <span class="order-product-tag">有品秒杀</span>
-              <span class="order-product-name">左点小仙智能蒸汽足浴盆Z9</span>
+              <span class="order-product-tag">良品铺子甜辣猪肉脯150g</span>
+              <span class="order-product-support">支持七天无理由退款</span>
             </span>
             <span class="order-product-price">459.00元×2</span>
-            <span class="order-product-total" @click="end">￥918.00</span>
+            <span class="order-product-total">￥918.00</span>
           </div>
-          <div>111</div>
+          <div class="order-product-bill-type">
+            <span class="order-bill-one">发票类型</span>
+            <span class="order-bill-two">不开发票</span>
+            <span class="order-bill-last">电子发票</span>
+          </div>
+          <div class="order-product-invoice">
+            <span class="order-bill-one">发票抬头</span>
+            <span class="order-bill-two">个人</span>
+            <span class="order-bill-last order-invoice">企业</span>
+          </div>
+          <a>常见发票问题>></a>
+          <div class="order-buyer-word">
+            <span class="order-bill-one order-buyer-title">买家留言</span>
+            <span>
+              <textarea
+                type="text"
+                class="order-buyer-text"
+                placeholder="填写内容，45字以内"
+                placeholder-name="placeholder"
+              ></textarea>
+            </span>
+          </div>
+        </div>
+        <p class="order-discount">无可用优惠券</p>
+
+        <div class="order-price">
+          <span>商品总价：</span>
+          <span class="order-price-two"> 31.00元</span>
+        </div>
+        <div class="order-price">
+          <span>运费 ：</span>
+          <span class="order-price-two"> 0.00元</span>
+        </div>
+        <div class="order-price">
+          <span>优惠：</span>
+          <span class="order-price-two"> 0.00元</span>
+        </div>
+        <div class="order-total-price order-price">
+          <span>合计：</span>
+          <span class="order-price-two order-total-two">￥31.00</span>
+        </div>
+        <div class="order-go">
+          <span @click="submit">去下单</span>
         </div>
       </div>
     </div>
@@ -60,9 +100,8 @@ export default {
     };
   },
   methods: {
-    async end() {
-      let result = await Api("/product/detail");
-      console.log(result);
+    submit() {
+      this.$router.push("/pay");
     },
   },
 };
@@ -147,27 +186,25 @@ body {
   height: 50px;
 }
 .order-info-product-name {
+  width: 400px;
+  display: flex;
+  height: 90px;
+  flex-direction: column;
+  justify-content: flex-end;
   margin-left: 20px;
   color: #333;
 }
 .order-product-tag {
-  height: 20px;
-  line-height: 20px;
-  padding: 0 6px;
-  margin-left: 8px;
-  background-color: #c00000;
-  color: #fff;
-  font-size: 12px;
-  vertical-align: 2px;
-  border-radius: 2px;
-}
-.order-product-name {
-  display: inline-block;
-  width: 400px;
-  vertical-align: middle;
+  font-size: 14px;
+  line-height: 40px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.order-product-support {
+  line-height: 20px;
+  font-size: 12px;
+  color: #ccc;
 }
 .order-product-price {
   flex-grow: 1;
@@ -178,5 +215,116 @@ body {
   width: 180px;
   text-align: end;
   color: #cc0000;
+}
+.order-product-bill-type {
+  padding-top: 30px;
+  color: #333;
+  font-size: 14px;
+}
+.order-bill-one {
+  font-size: 19px;
+}
+.order-bill-two {
+  display: inline-block;
+  width: 220px;
+  height: 44px;
+  line-height: 42px;
+  box-sizing: border-box;
+  background-color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #e7e7e7;
+  padding: 0 60px;
+  margin: 0 10px 0 60px;
+}
+.order-bill-last {
+  display: inline-block;
+  width: 220px;
+  height: 44px;
+  line-height: 42px;
+  box-sizing: border-box;
+  background-color: #fff;
+  text-align: center;
+  cursor: pointer;
+  color: #845f3f;
+  border: 1px solid #845f3f;
+}
+.order-invoice {
+  border: 1px solid #e7e7e7;
+  color: #333;
+}
+.order-product-invoice {
+  padding: 40px 0 20px;
+}
+.order-info-container a {
+  display: inline-block;
+  padding-left: 138px;
+  font-size: 14px;
+  color: #67a3d9;
+  text-decoration: underline;
+}
+.order-buyer-word {
+  padding: 30px 0 20px;
+}
+.order-buyer-title {
+  float: left;
+}
+.order-buyer-text {
+  margin: 23px 0 0 60px;
+  resize: none;
+  width: 760px;
+  height: 100px;
+  border: 1px solid #e7e7e7;
+  outline: none;
+  padding-left: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  padding-top: 12px;
+}
+.order-discount {
+  padding-top: 10px;
+  color: #cc0000;
+  font-size: 14px;
+}
+.order-bottom {
+  position: fixed;
+  right: 0;
+}
+.order-price {
+  width: 1080px;
+  text-align: right;
+  font-size: 14px;
+  padding: 5px 0;
+}
+.order-price-two {
+  padding-right: 30px;
+  padding-left: 60px;
+  color: #c00000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.order-total-price {
+  font-size: 18px;
+  padding-top: 20px;
+}
+.order-total-two {
+  padding-left: 35px;
+}
+.order-go {
+  width: 1080px;
+  text-align: right;
+  padding: 10px 0 50px;
+}
+.order-go span {
+  display: inline-block;
+  width: 160px;
+  height: 52px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  background-color: #845f3f;
+  border-color: #845f3f;
 }
 </style>

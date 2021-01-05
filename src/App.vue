@@ -1,8 +1,9 @@
 <template>
   <div>
     <!-- <Search /> -->
+    <router-view></router-view>
     <!-- <Pay /> -->
-    <Order />
+    <!--  <Order /> -->
   </div>
 </template>
 
