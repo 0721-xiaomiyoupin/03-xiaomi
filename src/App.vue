@@ -1,12 +1,19 @@
 <template>
-  <div></div>
+  <div id="app">
+    <Detail />
+  </div>
 </template>
 
 <script>
+import Detail from "./pages/Detail";
+
 export default {
-  name: "App",
+  name: "app",
+  components: {
+    Detail,
+  },
 };
 </script>
 
-<style lang="less" scoped>
+<style>
 </style>
