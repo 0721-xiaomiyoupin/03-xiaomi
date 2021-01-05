@@ -1,22 +1,23 @@
 <template>
   <div>
-    <ShopCart />
+    <Detail />
+    <!-- <ShopCart /> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import ElementUI from 'element-ui';
-import Vue from 'vue';
-import 'element-ui/lib/theme-chalk/index.css';
-import ShopCart from './pages/ShopCart';
-Vue.use(ElementUI);
+import Detail from './pages/Detail';
+// import ShopCart from './pages/ShopCart';
 export default {
   name: 'App',
   components: {
-    ShopCart,
+    // ShopCart,
+    Detail,
   },
 };
 </script>
 
 <style lang="less" scoped>
 </style>
+

@@ -8,24 +8,12 @@ router.get("/getShopCart", (ctx, next) => {
   console.log(shopcart, '/getShopCart')
   ctx.body = { code: 200, data: shopcart };
 });
-
-//添加数量
-let addcart = require("./datas/addcart.json")
-router.get("/getAddCart", function (ctx, next) {
-  //1.获取传递过来的id
-  let {
-    id,
-    count
-  } = ctx.query
-  console.log("getAddCart", id, count)
-  //2.通过id查找对应的商品
-  // @ts-ignore
-  let cart = addcart.find((cart) => {
-    return cart.id = id * 1
-  })
-  //3.将商品id返回
-  ctx.body = cart
-})
+//删除商品
+// let deleteCart = require("./datas/deletecart.json");
+// router.delete('/getDeleteCart/{id}', (ctx, next) => {
+//   ctx.body = deleteCart
+//   console.log(deleteCart, '1111')
+// });
 
 
 app.use(router.routes()).use(router.allowedMethods());

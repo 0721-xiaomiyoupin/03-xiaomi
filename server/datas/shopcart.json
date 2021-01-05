@@ -1,26 +1,26 @@
 [
   {
-    "id": "001",
+    "id": "100",
     "name": "小米热水器",
     "imgUrl": "https://img.youpin.mi-img.com/shopmain/bbfaf5c13800d642621f3f791644c9fc.jpg@base@tag=imgScale&F=webp&h=1080&w=1080?w=1080&h=1080",
-    "count": "5",
-    "price": "399.00",
-    "check": 1
-  },
-  {
-    "id": "002",
-    "name": "小米手机",
-    "imgUrl": "https://img.youpin.mi-img.com/shopmain/9cfe34493cbc6b3ca8dae36e4cde4216.jpg@base@tag=imgScale&F=webp&h=1080&w=1080?w=1080&h=1080",
-    "count": "1",
+    "count": "2",
     "price": "399.00",
     "check": 0
   },
   {
-    "id": "003",
-    "name": "小米水杯",
+    "id": "200",
+    "name": "小米手机",
+    "imgUrl": "https://img.youpin.mi-img.com/shopmain/9cfe34493cbc6b3ca8dae36e4cde4216.jpg@base@tag=imgScale&F=webp&h=1080&w=1080?w=1080&h=1080",
+    "count": "1",
+    "price": "1899.00",
+    "check": 1
+  },
+  {
+    "id": "300",
+    "name": "小米尊享手机",
     "imgUrl": "https://img.youpin.mi-img.com/shopmain/d55c652891772646e147930f78ce4bc8.jpg@base@tag=imgScale&F=webp&h=1080&w=1080?w=1080&h=1080",
     "count": "1",
-    "price": "399.00",
+    "price": "2099.00",
     "check": 0
   }
 ]
