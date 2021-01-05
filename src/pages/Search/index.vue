@@ -255,17 +255,18 @@
         <div class="recommend">
           <p class="recommend-p">为您推荐</p>
           <div class="search-allItem">
-            <div class="search-item">
+            <div
+              class="search-item"
+              v-for="recommend in recommendList"
+              :key="recommend.id"
+            >
               <div class="search-item-image">
-                <img
-                  src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-                />
+                <img :src="recommend.imgUrl" />
               </div>
               <p class="search-item-info">
-                COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-                LIVING 石墨烯自发热阳绒
+                {{ recommend.tital }}
               </p>
-              <p class="search-item-price">¥199</p>
+              <p class="search-item-price">¥{{ recommend.price }}</p>
             </div>
           </div>
         </div>
@@ -274,10 +275,27 @@
     </div>
   </div>
 </template>
-
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   name: "Search",
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapState({
+      recommendList: (state) => state.search.recommendList,
+    }),
+  },
+  methods: {
+    ...mapActions(["getRecommentList"]),
+    get() {
+      console.log(this.recommendList);
+    },
+  },
+  mounted() {
+    this.getRecommentList();
+  },
 };
 </script>
 
