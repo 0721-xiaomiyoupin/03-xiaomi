@@ -7,16 +7,19 @@
             <div class="bigImg">
               <img :src="geturl" alt="" />
             </div>
-            <div class="swiper-container thumb" ref="swiper">
-              <div class="swiper-wrapper thumb-container">
-                <div
-                  class="swiper-slide thumb-pic active"
-                  style="height: 300px"
-                  v-for="item in detail.rgs"
-                  :key="item.id"
-                  @click="putUrl"
-                >
-                  <img :src="item.url" :data-id="item.id" />
+            <div>
+              <div class="swiper-container thumb" ref="swiper">
+                <div class="swiper-wrapper thumb-container">
+                  <div
+                    class="swiper-slide thumb-pic"
+                    :class="{ active: isBorder }"
+                    style="height: 300px"
+                    v-for="item in detail.rgs"
+                    :key="item.id"
+                    @click="putUrl($event)"
+                  >
+                    <img :src="item.url" :data-id="item.id" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -30,7 +33,9 @@
                   alt=""
                 />
               </div>
-              <div class="good-name">MIJOY一次性使用医用口罩（10片/包）</div>
+              <div class="good-name">
+                MIJOY一次性使用医用口罩（10片/包）{{ size }}
+              </div>
             </div>
             <div class="summary">
               ≥95%细菌过滤效果，防菌防尘防飞沫，轻薄透气，高弹力耳挂
@@ -40,7 +45,9 @@
                 <span class="left">更多:</span>
                 <span class="right"
                   >【新年狂欢·小米生活精选】甄选行业爆款跑步鞋、平衡车、电动螺丝刀、背包、电动牙刷、剃须刀等
-                  <a href=""> 年终精选低至9.9元！点击查看>></a>
+                  <a href="javascript:void(0)">
+                    年终精选低至9.9元！点击查看>></a
+                  >
                 </span>
               </div>
             </div>
@@ -49,7 +56,7 @@
                 <h5>售价</h5>
                 <div class="price">
                   <span class="min">￥</span>
-                  <span class="big">9.9</span>
+                  <span class="big">{{ a }}</span>
                   <span class="mins">￥19</span>
                   <span class="bigs">特价</span>
                 </div>
@@ -109,15 +116,24 @@
                 </div>
                 <div class="service">
                   <div class="service-item">
-                    <a href="" class="el-icon-circle-check a"></a>
+                    <a
+                      href="javascript:void(0)"
+                      class="el-icon-circle-check a"
+                    ></a>
                     <span>满99包邮</span>
                   </div>
                   <div class="service-item">
-                    <a href="" class="el-icon-circle-check a"></a>
+                    <a
+                      href="javascript:void(0)"
+                      class="el-icon-circle-check a"
+                    ></a>
                     <span>小米自营</span>
                   </div>
                   <div class="service-item">
-                    <a href="" class="el-icon-circle-check a"></a>
+                    <a
+                      href="javascript:void(0)"
+                      class="el-icon-circle-check a"
+                    ></a>
                     <span>7天无理由</span>
                   </div>
                 </div>
@@ -134,7 +150,12 @@
             <div class="size-line">
               <h5 class="sku-title">规格</h5>
               <div class="size-container">
-                <div v-for="item in detail.option" :key="item.id">
+                <div
+                  v-for="item in detail.option"
+                  :key="item.id"
+                  @click="add(item, detail.option, $event)"
+                  :class="{ active: item.isCheck }"
+                >
                   {{ item.name }}
                 </div>
               </div>
@@ -143,7 +164,7 @@
               <span>数量</span>
               <el-input-number
                 size="small"
-                value="1"
+                v-model="num"
                 :min="1"
                 :max="10"
               ></el-input-number>
@@ -170,35 +191,31 @@
         </div>
         <div class="detail-content">
           <div class="detail-content-left">
-            <div class="detail-content-title">
-              <el-tabs
-                v-model="activeName"
-                type="card"
-                class="detail-content-content"
-              >
-                <el-tab-pane label="商品详情" name="first" class="image">
-                  <div
-                    v-for="item in detail.recommendResponseList"
-                    :key="item.gid"
-                  >
-                    <img :src="item.imgSquare" alt="" /></div
-                ></el-tab-pane>
-                <el-tab-pane label="评论" name="second">暂无数据</el-tab-pane>
-                <el-tab-pane label="常见问题" name="third">
-                  <div style="min-height: 900px">
-                    <img
-                      style="width: 774px; height: 723px"
-                      src="https://img.youpin.mi-img.com/shopmain/6fa6e6f8111dc6a379bc63e5c513b8db.jpg?w=1080&h=1009"
-                      alt=""
-                    />
-                    <img
-                      style="width: 774px; height: 723px"
-                      src="https://img.youpin.mi-img.com/shopmain/acd008c06d6997071e073c4997419bac.jpg?w=1080&h=804"
-                      alt=""
-                    /></div
-                ></el-tab-pane>
-              </el-tabs>
-            </div>
+            <!-- <div class="detail-content-title"> -->
+            <el-tabs type="card" class="detail-content-content" value="first">
+              <el-tab-pane label="商品详情" name="first" class="image">
+                <div
+                  v-for="item in detail.recommendResponseList"
+                  :key="item.gid"
+                >
+                  <img :src="item.imgSquare" alt="" /></div
+              ></el-tab-pane>
+              <el-tab-pane label="评论" name="second">暂无数据</el-tab-pane>
+              <el-tab-pane label="常见问题" name="third">
+                <div style="min-height: 900px">
+                  <img
+                    style="width: 774px; height: 723px"
+                    src="https://img.youpin.mi-img.com/shopmain/6fa6e6f8111dc6a379bc63e5c513b8db.jpg?w=1080&h=1009"
+                    alt=""
+                  />
+                  <img
+                    style="width: 774px; height: 723px"
+                    src="https://img.youpin.mi-img.com/shopmain/acd008c06d6997071e073c4997419bac.jpg?w=1080&h=804"
+                    alt=""
+                  /></div
+              ></el-tab-pane>
+            </el-tabs>
+            <!-- </div> -->
           </div>
           <div class="detail-content-right">
             <div class="detail-content-right-title">
@@ -242,8 +259,7 @@
 </template>
 
 <script>
-import Swiper, { Navigation, Pagination } from "swiper";
-Swiper.use([Navigation, Pagination]);
+import Swiper from "swiper";
 import ajax from "../../api/Api";
 export default {
   name: "Detail",
@@ -251,17 +267,41 @@ export default {
     return {
       detail: {},
       geturl: "",
+      num: 1,
+      price: 15,
+      isShow: false,
+      isBorder: true,
+      size: "",
     };
   },
+  computed: {
+    a() {
+      return this.num * this.price;
+    },
+  },
   methods: {
+    // Tab切换随着滚动条动而动完成
+    handleScroll() {
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      let offsetTop = document.querySelector(".el-tabs__header").offsetTop;
+      let Tabs = document.querySelector(".el-tabs__header");
+      if (scrollTop - offsetTop > 50) {
+        this.isShow = true;
+        Tabs.classList.add("active");
+      } else {
+        this.isShow = false;
+        Tabs.classList.remove("active");
+      }
+    },
+
     // 获取商品详情数据
     async getUrl() {
       let result = await ajax("/product/detail");
-      console.log(result);
       this.detail = result;
-      // this.Url = result.rgs;
       this.geturl = result.rgs[0].url;
-      // this.recommendResponseList = result.recommendResponseList;
     },
 
     // 点击缩略图切换大图
@@ -270,23 +310,21 @@ export default {
       if (!id) return;
       this.geturl = e.target.currentSrc;
     },
+
+    add(value, List, e) {
+      this.size = e.target.innerHTML;
+      List.forEach((li) => (li.isCheck = false));
+      value.isCheck = true;
+      this.price = value.price;
+    },
   },
   mounted() {
     // 一上来就请求商品详情数据
     this.getUrl();
-
+    window.addEventListener("scroll", this.handleScroll);
     // 缩略图
     this.swiper = new Swiper(this.$refs.swiper, {
       direction: "vertical",
-      // 如果需要分页器
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
     });
   },
 };
@@ -350,7 +388,7 @@ export default {
         height: 100%;
       }
     }
-    .thumb-pic.active {
+    .swiper-slide.thumb-pic.active {
       border: 1px solid #845f3f;
     }
 
@@ -385,7 +423,6 @@ export default {
     display: block;
   }
 }
-
 .sku-container {
   width: 561px;
   margin-left: 50px;
@@ -545,7 +582,7 @@ export default {
     display: flex;
     overflow: hidden;
     div {
-      border: 1px solid #845f3f;
+      border: 1px solid #ccc;
       margin-right: 14px;
       box-sizing: border-box;
       padding: 4px 20px;
@@ -553,6 +590,9 @@ export default {
       line-height: 22px;
       font-size: 14px;
       margin-bottom: 14px;
+    }
+    div.active {
+      border: 1px solid #845f3f;
     }
   }
 }
@@ -684,6 +724,7 @@ export default {
     }
     .btn1 {
       background: #845f3f;
+      cursor: pointer;
     }
     .btn1:hover {
       opacity: 0.4;
@@ -691,6 +732,7 @@ export default {
     .btn2 {
       color: #845f3f;
       background: white;
+      cursor: pointer;
     }
     .btn2:hover {
       background: #845f3f;
@@ -711,8 +753,8 @@ export default {
       background: white;
       width: 100%;
       height: 100%;
-      // border: 1px solid #ccc;
       border: none;
+      cursor: pointer;
       i {
         width: 40px;
         height: 30px;
@@ -735,11 +777,12 @@ export default {
     line-height: 12px;
     color: #999;
     margin-right: 15px;
+    cursor: pointer;
     button {
       background: white;
       width: 100%;
       height: 100%;
-      // border: 1px solid #ccc;
+      cursor: pointer;
       border: none;
       i {
         width: 40px;
@@ -922,5 +965,20 @@ export default {
 }
 /deep/.el-tabs__header {
   margin: 0;
+  background: #e7e7e7;
+  width: 774px;
+  // position: fixed;
+  // top: 51px;
+  // background: pink;
+  // width: 774px;
+  // z-index: 9999;
+}
+/deep/.el-tabs__header.active {
+  margin: 0;
+  position: fixed;
+  top: 51px;
+  background: #e7e7e7;
+  width: 774px;
+  z-index: 9999;
 }
 </style>

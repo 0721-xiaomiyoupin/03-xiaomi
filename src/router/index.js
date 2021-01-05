@@ -8,7 +8,8 @@ import Detail from '../pages/Detail';
 const router = new VueRouter({
 	routes: [
 		{
-			path: '/',
+			name: 'Detail',
+			path: '/detail',
 			component: Detail
 		}
 	]
