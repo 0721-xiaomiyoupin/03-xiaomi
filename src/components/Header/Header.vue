@@ -23,7 +23,7 @@
             </div>
           </li>
           <li v-else>
-            <a href="##" @click="isLogin = true">登陆 </a>
+            <a href="##" @click="isLogin = true" style="border: none">登陆 </a>
             <a href="##"> 注册</a>
           </li>
           <li><a href="##">帮助中心</a></li>
@@ -102,7 +102,6 @@ export default {
           border-right: 1px solid #ccc;
           padding-right: 15px;
           font-size: 14px;
-          color: #fff;
           text-decoration: none;
         }
       }
@@ -135,7 +134,7 @@ export default {
         }
         &:hover {
           ul {
-            height: 200px;
+            height: 240px;
             transition: height 1s;
           }
         }
