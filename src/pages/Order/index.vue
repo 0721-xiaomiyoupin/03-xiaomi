@@ -40,7 +40,7 @@
               <span class="order-product-name">左点小仙智能蒸汽足浴盆Z9</span>
             </span>
             <span class="order-product-price">459.00元×2</span>
-            <span class="order-product-total">￥918.00</span>
+            <span class="order-product-total" @click="end">￥918.00</span>
           </div>
           <div>111</div>
         </div>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import Api from "../../api/Api";
 export default {
   name: "Order",
   data() {
@@ -57,6 +58,12 @@ export default {
       flag: true,
       color: false,
     };
+  },
+  methods: {
+    async end() {
+      let result = await Api("/product/detail");
+      console.log(result);
+    },
   },
 };
 </script>
