@@ -16,4 +16,8 @@ export default {
 </script>
 
 <style>
+body {
+  padding-right: 0px !important;
+  overflow: hidden;
+}
 </style>
