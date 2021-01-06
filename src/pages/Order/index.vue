@@ -2,7 +2,9 @@
   <div class="order">
     <div class="order-container">
       <div class="order-top">
-        <span class="order-span-one"><a>首页</a>></span>
+        <span class="order-span-one"
+          ><router-link class="to-home" to="/home">首页</router-link>></span
+        >
         <span class="order-span-two"><a>个人中心</a>></span>
         <span class="order-span-last"><a>确认页</a></span>
       </div>
@@ -125,12 +127,13 @@ body {
   padding-bottom: 30px;
 }
 .order-top {
+  border-top: 1px solid #e7e7e7;
   padding: 30px 0;
   height: 15px;
   font-size: 13px;
   color: #000;
 }
-.order-span-one a {
+.order-span-one .to-home {
   margin-right: 6px;
 }
 .order-span-two a {

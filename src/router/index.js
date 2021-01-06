@@ -3,6 +3,10 @@ import VueRouter from "vue-router";
 import Order from "../pages/Order";
 import Pay from "../pages/Pay";
 import Search from "../pages/Search";
+import Detail from "../pages/Detail";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import ShopCart from "../pages/ShopCart";
 
 const push = VueRouter.prototype.push;
 const replace = VueRouter.prototype.replace;
@@ -29,19 +33,49 @@ export default new VueRouter({
   routes: [
     {
       path: "/",
+      component: Home,
+    },
+    {
+      name: "home",
+      path: "/home",
+      component: Home,
+    },
+    {
+      name: "search",
+      path: "/search",
       component: Search,
     },
     {
+      name: "detail",
+      path: "/detail",
+      component: Detail,
+    },
+    {
+      name: "shopcart",
+      path: "/shopcart",
+      component: ShopCart,
+    },
+    {
+      name: "order",
       path: "/order",
       component: Order,
     },
     {
+      name: "pay",
       path: "/pay",
       component: Pay,
     },
     {
-      path: "/search",
-      component: Search,
+      name: "login",
+      path: "/login",
+      component: Login,
+      meta: {
+        isFooterHide: true,
+      },
     },
   ],
+  // 每次切换路由页面滚动条位置
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  },
 });

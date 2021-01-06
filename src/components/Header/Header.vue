@@ -65,13 +65,13 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: "Header",
   data() {
     return {
       isLogin: true,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -103,6 +103,9 @@ export default {
           padding-right: 15px;
           font-size: 14px;
           text-decoration: none;
+        }
+        a:hover {
+          color: #fff !important;
         }
       }
       .user {

@@ -1,10 +1,9 @@
 <template>
   <div>
-    <Header />
-    <Category />
-    <Menu />
+    <Header v-if="!$route.meta.isFooterHide" />
+    <Menu v-if="!$route.meta.isFooterHide" />
     <router-view></router-view>
-    <Footer />
+    <Footer v-if="!$route.meta.isFooterHide" />
   </div>
 </template>
 
@@ -12,14 +11,12 @@
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Menu from "./components/Menu/Menu";
-import Category from "./components/Category/Categoty";
 export default {
   name: "App",
   components: {
     Header,
     Footer,
     Menu,
-    Category,
   },
 };
 </script>
