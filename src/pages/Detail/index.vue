@@ -15,7 +15,6 @@
                 >
                   <div
                     class="swiper-slide thumb-pic"
-                    :class="{ active: isBorder }"
                     style="height: 300px"
                     v-for="(item, index) in detail.detail[0].goods
                       .carouselMapList"
@@ -49,9 +48,7 @@
                 <span class="left">更多:</span>
                 <span class="right"
                   >【新年狂欢·小米生活精选】甄选行业爆款跑步鞋、平衡车、电动螺丝刀、背包、电动牙刷、剃须刀等
-                  <a href="javascript:void(0)">
-                    年终精选低至9.9元！点击查看>></a
-                  >
+                  <span> 年终精选低至9.9元！点击查看>></span>
                 </span>
               </div>
             </div>
@@ -124,10 +121,10 @@
                     v-for="(item, index) in detail.detail[0].goods.services"
                     :key="index"
                   >
-                    <a
-                      href="javascript:void(0)"
+                    <p
+                      style="cursor: pointer"
                       class="el-icon-circle-check a"
-                    ></a>
+                    ></p>
                     <span>{{ item.text }}</span>
                   </div>
                 </div>
@@ -153,6 +150,7 @@
                   :key="text.tid"
                   @click="add(text, item.tags, $event)"
                   :class="{ active: text.isCheck }"
+                  style="cursor: pointer"
                 >
                   {{ text.name }}
                 </div>
@@ -191,7 +189,6 @@
         </div>
         <div class="detail-content">
           <div class="detail-content-left">
-            <!-- <div class="detail-content-title"> -->
             <el-tabs type="card" class="detail-content-content" value="first">
               <el-tab-pane
                 label="商品详情"
@@ -216,13 +213,21 @@
                         </div>
                         <div class="comment-top-ratingbar-container"></div>
                       </div>
-                      <div class="comment-top-tabs">
+                      <div class="comment-top-tabs" v-if="detail.detail">
                         <div class="tabbar-container">
-                          <div class="tabbar-item">
-                            <a
+                          <div
+                            class="tabbar-item"
+                            v-for="(item, index) in detail.detail[0].comment
+                              .index.tags"
+                            :key="item.id"
+                            :class="{
+                              active: index === 0,
+                            }"
+                          >
+                            <span
                               href="javascript:;"
                               class="comment-top-tabs-item m-btns m-btn-xs m-btn-brown"
-                              >全部(8176)</a
+                              >{{ item.name }}({{ item.count }})</span
                             >
                           </div>
                         </div>
@@ -281,7 +286,6 @@
                             </div>
                           </div>
                           <div class="b-div"></div>
-                          <!-- <div class="imggroup-container"></div> -->
                         </div>
                       </div>
                     </div>
@@ -312,13 +316,13 @@
                   alt=""
                 />
                 <div class="image-title">
-                  <div class="title">
+                  <div class="title" style="cursor: pointer">
                     <h6>小米</h6>
                     <span>自营</span>
                   </div>
                   <div>让每个人都能享受科技的乐趣</div>
                 </div>
-                <button>进入</button>
+                <button style="cursor: pointer">进入</button>
               </div>
             </div>
             <div class="detail-content-bottom">
@@ -470,7 +474,6 @@ export default {
       num: 1,
       price: 2100,
       isShow: false,
-      isBorder: true,
       size: "",
       dialogVisible: false,
     };
@@ -496,7 +499,7 @@ export default {
         document.body.scrollTop;
       let offsetTop = document.querySelector(".el-tabs__header").offsetTop;
       let Tabs = document.querySelector(".el-tabs__header");
-      if (scrollTop - offsetTop > 500) {
+      if (scrollTop - offsetTop > 50) {
         this.isShow = true;
         Tabs.classList.add("active");
       } else {
@@ -685,9 +688,10 @@ export default {
       color: #333;
       font-size: 12px;
       margin-top: 4px;
-      a {
+      span {
         color: #c00000;
         margin-left: 4px;
+        cursor: pointer;
       }
     }
   }
@@ -1086,6 +1090,9 @@ export default {
         background: #845f3f;
         color: white;
       }
+      button:hover {
+        opacity: 0.4;
+      }
     }
   }
   .detail-content-bottom {
@@ -1103,6 +1110,7 @@ export default {
       border: 1px solid #f4f4f4;
       overflow: hidden;
       transition: all 0.5s;
+      cursor: pointer;
       .container {
         width: 260px;
         // height: 197px;
@@ -1197,6 +1205,13 @@ export default {
 }
 .tabbar-container .tabbar-item {
   margin-bottom: 10px;
+  margin-right: 20px;
+}
+.tabbar-container .tabbar-item.active {
+  background: #845f3f;
+  span {
+    color: white;
+  }
 }
 .m-btn-xs {
   min-width: 70px;
