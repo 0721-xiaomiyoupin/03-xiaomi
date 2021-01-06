@@ -5,8 +5,10 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
+import "./plugins/directives";
 import "./style/Common.css";
-import './plugins/element.js'
+import "./plugins/element.js";
+import "./assets/font/iconfont.css";
 
 new Vue({
   render: (h) => h(App),

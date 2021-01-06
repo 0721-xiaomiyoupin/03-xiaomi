@@ -1,8 +1,13 @@
 <template>
   <div class="home">
+    <!-- 头部 -->
+    <Header />
+
     <!-- banner -->
     <div class="banner-nav container clearfix">
-      <div style="width: 221px; height: 358px; background-color: orange"></div>
+      <div style="width: 220px; height: 360px">
+        <Categoty />
+      </div>
       <!-- 轮播图 -->
       <!-- <div class="banner-box"> -->
       <!-- <div class="banner-swiper"> -->
@@ -403,10 +408,20 @@
         </div>
       </div> -->
     </div>
+
+    <!-- 尾部 -->
+    <Footer />
+
+    <!-- 侧边栏 -->
+    <Menu />
   </div>
 </template>
 
 <script>
+import Header from "../../components/Header/Header";
+import Categoty from "../../components/Category/Categoty";
+import Footer from "../../components/Footer/Footer";
+import Menu from "../../components/Menu/Menu";
 import request from "../../api/Api";
 import "swiper/swiper-bundle.css";
 import Swiper, { Navigation, Autoplay } from "swiper";
@@ -444,17 +459,17 @@ export default {
       this.menuList = result;
     },
 
-    //menu的列表数据
+    //new的列表数据
     async new() {
       const result = await request("/product/newsList");
-      //   console.log(result);
+      console.log(result);
       this.newsList = result;
     },
 
     //recommend的列表数据
     async recommend() {
       const result = await request("/product/recommendList");
-      console.log(result);
+      //   console.log(result);
       this.recommendList = result;
     },
     //swiper轮播图
@@ -481,6 +496,12 @@ export default {
     this.new();
     this.recommend();
     this.initSwiper();
+  },
+  components: {
+    Menu,
+    Header,
+    Footer,
+    Categoty,
   },
 };
 </script>
@@ -756,6 +777,7 @@ export default {
 
 .recommend {
   margin-top: 50px;
+  margin-bottom: 60px;
 }
 
 .recommend-title {
