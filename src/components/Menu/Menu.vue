@@ -43,7 +43,7 @@
           <p>这是一个二维码</p>
         </div>
       </li>
-      <li style="border: none">
+      <li style="border: none" v-to-top id="top-bar">
         <span class="iconfont icon-huojian"></span>
         <p>回到顶部</p>
       </li>
@@ -154,9 +154,18 @@ export default {
         height: 100px;
       }
     }
-
+    div {
+      flex-grow: 1;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 14px;
+    }
     &:hover {
-      color: rgb(24, 9, 4);
+      color: rgb(159, 128, 82);
+      cursor: pointer;
       .Hiddenbox {
         display: block;
         color: black;

@@ -10,7 +10,7 @@
               <h3>{{ c2.name }}</h3>
               <div class="Categoty3">
                 <span v-for="c3 in c2.children" :key="c3.index">
-                  {{ '无数据' }}
+                  {{ c3.smallImgCard && c3.smallImgCard.name }}
                 </span>
               </div>
             </div>
