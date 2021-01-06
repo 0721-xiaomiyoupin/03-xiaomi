@@ -1,4 +1,6 @@
 import Vue from 'vue'
-import { InputNumber, } from 'element-ui'
+import { Button, InputNumber, Popover } from 'element-ui'
 
 Vue.use(InputNumber);
+Vue.use(Popover);
+Vue.use(Button)

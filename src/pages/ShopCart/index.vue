@@ -1,180 +1,137 @@
 <template>
   <div class="cartContainer">
-    <div class="cartChange">
-      <span class="active"><a href="###">首页</a></span
-      >>
-      <span class="deactive"><a href="###">购物车</a></span>
-    </div>
-    <div class="cart-main">
-      <div class="cart-th">
-        <div class="cart-th1">
-          <input
-            type="checkbox"
-            :checked="isCheckAll"
-            @change="checkAll(isCheckAll)"
-          />
-          <span class="all-select">全选</span>
-        </div>
-        <div class="cart-th2">商品信息</div>
-        <div class="cart-th3">单价（元）</div>
-        <div class="cart-th4">数量</div>
-        <div class="cart-th5">金额（元）</div>
-        <div class="cart-th6">操作</div>
+    <div class="showCart">
+      <div class="cartChange">
+        <span class="active"><router-link to="/">首页</router-link></span
+        >>
+        <span class="deactive"><a href="###">购物车</a></span>
       </div>
-      <div>
-        <div class="cateName">
-          <div class="choice">
+      <div class="showLoginImg" v-if="isShowLogin">
+        <div class="textImg">
+          <img src="./images/04.png" />
+          <p>登录后才能看到购物车商品哦~</p>
+        </div>
+        <div class="toLogin">
+          <router-link to="/login">去登录</router-link>
+        </div>
+      </div>
+      <div class="showLoginImg" v-else-if="isShowShoping">
+        <div class="textImg">
+          <img src="./images/05.png" />
+          <p>购物车还是空的</p>
+        </div>
+        <div class="toLogin">
+          <router-link to="/login">继续逛</router-link>
+        </div>
+      </div>
+      <div class="cart-main" v-else>
+        <div class="cart-th">
+          <div class="cart-th1">
             <input
-              name="goods"
               type="checkbox"
               :checked="isCheckAll"
               @change="checkAll(isCheckAll)"
             />
-            <span>有品精选</span>
+            <span class="all-select">全选</span>
           </div>
-          <div class="popover">
-            <el-popover
-              placement="top-start"
-              width="200"
-              trigger="hover"
-              content="有品精选商品，即有品配送和第三方商家发货的商品，
+          <div class="cart-th2">商品信息</div>
+          <div class="cart-th3">单价（元）</div>
+          <div class="cart-th4">数量</div>
+          <div class="cart-th5">金额（元）</div>
+          <div class="cart-th6">操作</div>
+        </div>
+        <div>
+          <div class="cateName">
+            <div class="choice">
+              <input
+                name="goods"
+                type="checkbox"
+                :checked="isCheckAll"
+                @change="checkAll(isCheckAll)"
+              />
+              <span>小米有品(特殊商品)</span>
+            </div>
+            <div class="popover">
+              <el-popover
+                placement="top-start"
+                width="200"
+                trigger="hover"
+                content="有品精选商品，即有品配送和第三方商家发货的商品，
               2018年1月1日起，单笔订单满99元免运费，不满99元收10元运费。
               *包邮订单拆单后若部分订单退款使得剩余订单不满足包邮条件时将补扣10元运费。"
+              >
+                <el-button slot="reference">已免运费</el-button>
+              </el-popover>
+            </div>
+          </div>
+          <div class="cart-body">
+            <ul
+              class="cart-list"
+              v-for="(cart, index) in shopCartList"
+              :key="cart.gid"
             >
-              <el-button slot="reference">满99元免运费</el-button>
-            </el-popover>
+              <li class="cart-con1">
+                <!--  <input
+                  type="checkbox"
+                  :checked="cart.checked ? 'checked' : ''"
+                  @change="changeCheck(!cart.checked, index)"
+                /> -->
+                <input
+                  type="checkbox"
+                  :checked="cart.checked"
+                  @change="changeCheck(cart, index)"
+                />
+              </li>
+              <li class="cart-con2">
+                <div class="urlImg">
+                  <img :src="cart.imageUrl" class="cartImg" />
+                </div>
+                <div class="cartTitle">
+                  <a href="###">{{ cart.productName }}</a>
+                </div>
+              </li>
+              <li class="cart-con3">
+                <span>￥{{ cart.salePrice }}</span>
+              </li>
+              <li class="cart-con4">
+                <el-input-number
+                  v-model="cart.count"
+                  :min="1"
+                  :max="10"
+                  label="描述文字"
+                ></el-input-number>
+              </li>
+              <li class="cart-con5">
+                <span>￥{{ cart.count * cart.salePrice }}</span>
+              </li>
+              <li class="cart-con6">
+                <i class="el-icon-close" @click="del(cart.gid)"></i>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="cart-body">
-          <ul
-            class="cart-list"
-            v-for="(cart, index) in shopCartList"
-            :key="cart.id"
-          >
-            <li class="cart-con1">
-              <input
-                type="checkbox"
-                :checked="cart.check ? 'check' : ''"
-                @change="changeSelected(+!cart.check, index)"
-              />
-            </li>
-            <li class="cart-con2">
-              <img :src="cart.imgUrl" class="cartImg" />
-              <div class="cartTitle">
-                <a href="###">{{ cart.name }}</a>
-              </div>
-            </li>
-            <li class="cart-con3">
-              <span>￥{{ cart.price }}</span>
-            </li>
-            <li class="cart-con4">
-              <el-input-number
-                @click="updateCount"
-                v-model="cart.count"
-                :min="1"
-                :max="10"
-                label="描述文字"
-                @blur="updateCount(cart)"
-              ></el-input-number>
-            </li>
-            <li class="cart-con5">
-              <span>￥{{ cart.count * cart.price }}</span>
-            </li>
-            <li class="cart-con6">
-              <i class="el-icon-close" @click="del(cart.id)"></i>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- <div>
-        <div class="cateName">
-          <div class="choice">
+        <div class="cart-choose">
+          <div class="chooseAll">
             <input
-              name="private"
               type="checkbox"
-              :checked="isSelectAll"
-              @change="selectAll(isSelectAll)"
+              :checked="isCheckAll"
+              @change="checkAll(isCheckAll)"
             />
-            <span>小米自营(特殊商品)</span>
+            <span>全选</span>
+            已选<span>{{ totalNum }}</span>
           </div>
-          <div class="popover">
-            <el-popover
-              placement="top-start"
-              width="200"
-              trigger="hover"
-              content="有品精选商品，即有品配送和第三方商家发货的商品，
-              2018年1月1日起，单笔订单满99元免运费，不满99元收10元运费。
-              *包邮订单拆单后若部分订单退款使得剩余订单不满足包邮条件时将补扣10元运费。"
-            >
-              <el-button slot="reference">满99元免运费</el-button>
-            </el-popover>
+          <div class="total-money">
+            <div class="amount">
+              合计:<span>￥{{ totalAmount }}</span>
+            </div>
+            <!-- <div class="break-price">
+              <span>总额：￥798.00,</span>
+              <span> 立减￥150.00 </span>
+            </div> -->
           </div>
-        </div>
-        <div class="cart-body">
-          <ul
-            class="cart-list"
-            v-for="(cart, index) in shopCartList"
-            :key="cart.id"
-          >
-            <li class="cart-con1">
-              <input
-                type="checkbox"
-                :checked="cart.check ? 'check' : ''"
-                @change="changeSelected(+!cart.check, index)"
-              />
-            </li>
-            <li class="cart-con2">
-              <img :src="cart.imgUrl" class="cartImg" />
-              <div class="cartTitle">
-                <a href="###">{{ cart.name }}</a>
-              </div>
-            </li>
-            <li class="cart-con3">
-              <span>￥{{ cart.price }}</span>
-            </li>
-            <li class="cart-con4">
-              <el-input-number
-                @click="updateCount"
-                v-model="cart.count"
-                :min="1"
-                :max="10"
-                label="描述文字"
-                @blur="updateCount(cart)"
-              ></el-input-number>
-            </li>
-            <li class="cart-con5">
-              <span>￥{{ cart.count * cart.price }}</span>
-            </li>
-            <li class="cart-con6">
-              <i class="el-icon-close" @click="del(cart.id)"></i>
-            </li>
-          </ul>
-        </div>
-      </div> -->
-      <div class="cart-choose">
-        <div class="chooseAll">
-          <input
-            type="checkbox"
-            :checked="isCheckAll"
-            @change="checkAll(isCheckAll)"
-          />
-          <span>全选</span>
-          <span
-            >已选<span>{{ totalCount }}</span
-            >件</span
-          >
-        </div>
-        <div class="total-money">
-          <div class="amount">
-            合计:<span>￥{{ totalPrice }}</span>
+          <div class="btn">
+            <button class="btn" @click="toOrder()">去结算</button>
           </div>
-          <div class="break-price">
-            <span>总额：￥798.00,</span>
-            <span> 立减￥150.00 </span>
-          </div>
-        </div>
-        <div class="btn">
-          <button class="submit">去结算</button>
         </div>
       </div>
     </div>
@@ -182,109 +139,94 @@
 </template>
 
 <script>
-import Api from '../../api/Api';
+//import Api from '../../api/Api';
+import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'ShopCart',
   data() {
     return {
-      shopCartList: [],
+      traceId: 'c7eee263e318b6594288063feb222499',
     };
   },
-  async mounted() {
-    //获取数据并展示(展示数据出现错误)
-    let result = await Api('/getShopCart');
-    this.shopCartList = result;
+  mounted() {
+    this.getShopCart();
   },
   methods: {
-    //数量更新,做表单输入限制
-    updateCount(count) {
-      //console.log('updateCount');
-      if (count < 1) {
-        count = 1;
-      }
-      if (count > 10) {
-        count = 10;
-      }
-    },
+    ...mapActions(['getShopCart']),
+    ...mapMutations(['delCart', 'changeSelected', 'changeSelectedAll']),
     //弹窗删除商品
     del(id) {
       if (window.confirm('您确定要删除吗?')) {
-        console.log(id, this.shopCartList);
-        this.shopCartList = this.shopCartList.filter((cart) => {
-          return cart.id !== id;
-        });
+        this.delCart(id);
       }
-      // this.$confirm('您确定要删除吗?', {
-      //   confirmButtonText: '确定',
-      //   cancelButtonText: '取消',
-      //   callback: (id) => {
-      //     console.log(id);
-      //     this.shopCartList = this.shopCartList.filter((cart) => {
-      //       return cart.id !== id;
-      //     });
-      //   },
-      //});
     },
-    //切换选中状态
-    changeSelected(check, index) {
-      console.log('changeSelected', check, index);
-      //修改切换状态
-      this.shopCartList[index].check = check;
-      // this.$store.commit('changeSelected', { check, index });
+    //切换单个商品选中
+    changeCheck(cart, index) {
+      this.changeSelected({ cart, index });
     },
-    //切换全选状态
-    checkAll(check) {
-      //判断选中的状态并进行数据转换
-      check = check === true ? 0 : 1;
-      //console.log(check);
-      //遍历数据
-      this.shopCartList.forEach((cart) => {
-        cart.check = check;
-      });
+    //切换全选
+    checkAll(checked) {
+      this.changeSelectedAll(checked);
     },
-    // //切换单个列表全选功能
-    // selectAll(check) {
-    //   check = check === true ? 0 : 1;
-    //   console.log(check);
-    //   //遍历每条数据的时候
-    //   this.shopCartList.forEach((cart) => {
-    //     cart.check = check;
-    //   });
-    // },
+    //跳转到结算页面
+    toOrder(traceId) {
+      this.$router.push(`/addressList?traceId=${this.traceId}`);
+    },
   },
   computed: {
-    //已选数量
-    totalCount(shopCartList) {
-      return this.shopCartList.reduce((p, c) => {
-        // return c.check === 1 ? p + c.count : p;
-        return p + (c.check === 1 ? c.count : 0);
-      }, 0);
-    },
-    //合计价格
-    totalPrice(shopCartList) {
-      return this.shopCartList.reduce((p, c) => {
-        return c.check === 1 ? p + c.count * c.price : p;
-      }, 0);
-    },
-    //统计全选
-    isCheckAll(shopCartList) {
-      return this.shopCartList.every((cart) => cart.check);
-    },
-    //统计单个列表的全选
-    // isSelectAll(shopCartList) {
-    //   return this.shopCartList.every((cart) => cart.check);
-    // },
+    ...mapState({
+      shopCartList: (state) => state.shopCart.shopCartList,
+      isShowLogin: (state) => state.shopCart.isShowLogin,
+      isShowShoping: (state) => state.shopCart.isShowShoping,
+    }),
+    ...mapGetters(['totalNum', 'totalAmount', 'isCheckAll']),
   },
 };
 </script>
 
 <style lang="less" scoped>
-input {
-  margin-left: 10px;
-}
 .cartContainer {
   width: 1080px;
   margin: 0 auto;
+}
+.showLoginImg {
+  height: 174px;
+  padding: 100px 0 200px;
+}
+.textImg,
+.toLogin {
+  margin: 0 450px;
+}
+.textImg img {
+  width: 153px;
+  height: 132px;
+}
+.textImg p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  width: 200px;
+}
+.toLogin {
+  margin-top: 21px;
+  text-align: center;
+}
+.toLogin a {
+  display: inline-block;
+  width: 97px;
+  height: 43px;
+  line-height: 43px;
+  font-size: 18px;
+  color: #666;
+  border: 1px solid #666;
+}
+.toLogin a:hover {
+  background-color: rgb(134, 107, 68);
+  color: #ccc;
+}
+input {
+  margin-left: 10px;
 }
 .cartChange {
   padding: 30px 0;
@@ -372,10 +314,11 @@ input {
   width: 35%;
   // margin-left: 20px;
 }
-.cartTitle {
+.cartTitle a {
   font-size: 14px;
   color: #333;
-  line-height: 40px;
+  height: 40px;
+  margin-bottom: 30px;
 }
 .cart-con3 {
   width: 15%;
@@ -416,29 +359,16 @@ input {
   padding: 0 10px;
 }
 .total-money {
-  float: left;
-  // border: 1px solid green;
-  padding-bottom: 20px;
-  height: 60px;
-  line-height: 60px;
   margin-right: -400px;
 }
 .amount {
-  height: 30px;
   font-size: 24px;
 }
 .amount span {
   padding-left: 10px;
   color: #c00000;
 }
-.break-price {
-  height: 30px;
-}
-.break-price span {
-  font-size: 12px;
-  color: #999;
-}
-.submit {
+.btn {
   width: 200px;
   height: 80px;
   background: #a9010d;

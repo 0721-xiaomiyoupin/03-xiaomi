@@ -1,4 +1,6 @@
-import shopCart from "./shopcart";
+import shopCart from "./shopCart";
+import toShopCart from "./toShopCart"
 export default {
-  shopCart
+  shopCart,
+  toShopCart
 }

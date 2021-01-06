@@ -1,7 +1,11 @@
+// @ts-nocheck
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Detail from "../pages/Detail";
 import ShopCart from "../pages/ShopCart";
+import Home from "../components/Home";
+import Login from "../components/Login";
+import AddressList from "../pages/AddressList"
 // // @ts-ignore
 // const Detail = () => import(/* webpackChunkName: "Detail" */ '../pages/Detail')
 // // @ts-ignore
@@ -29,17 +33,23 @@ const router = new VueRouter({
   routes: [
     {
       path: "/",
-      component: Detail
+      component: Home
     },
     {
-      name: "detail",
       path: "/detail",
       component: Detail
     },
     {
-      name: "shopCart",
       path: "/shopcart",
       component: ShopCart
+    },
+    {
+      path: "/login",
+      component: Login
+    },
+    {
+      path: "/addressList",
+      component: AddressList
     },
   ]
 })
