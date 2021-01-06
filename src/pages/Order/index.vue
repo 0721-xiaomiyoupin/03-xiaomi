@@ -10,13 +10,32 @@
       </div>
       <div class="order-address">
         <p>收货地址</p>
-        <div class="order-address-detail">
-          <div>姓名：&nbsp;&nbsp;&nbsp;<span>刘瑶</span></div>
+        <div class="order-address-detail" v-if="address.data">
           <div>
-            地址：&nbsp;&nbsp;&nbsp;<span>刘瑶</span><span>刘瑶</span
-            ><span>刘瑶</span>
+            姓名：&nbsp;&nbsp;&nbsp;<span>{{
+              address.data.address[0].consignee
+            }}</span>
           </div>
-          <div>编码：&nbsp;&nbsp;&nbsp;<span>刘瑶</span></div>
+          <div>
+            地址：&nbsp;&nbsp;&nbsp;<span>{{
+              address.data.address[0].province.name
+            }}</span
+            ><span>({{ address.data.address[0].city.name }})</span
+            ><span
+              >{{ address.data.address[0].district.name
+              }}{{ address.data.address[0].area.name }}</span
+            >
+          </div>
+          <div>
+            电话：&nbsp;&nbsp;&nbsp;<span>{{
+              address.data.address[0].tel
+            }}</span>
+          </div>
+          <div>
+            编码：&nbsp;&nbsp;&nbsp;<span>{{
+              address.data.address[0].zipcode
+            }}</span>
+          </div>
         </div>
       </div>
       <div
@@ -43,11 +62,13 @@
           <div class="order-info-product">
             <img src="./images/shopmain.png" />
             <span class="order-info-product-name">
-              <span class="order-product-tag">良品铺子甜辣猪肉脯150g</span>
+              <span class="order-product-tag"
+                >小米10青春版 6GB+128GB 白桃乌龙</span
+              >
               <span class="order-product-support">支持七天无理由退款</span>
             </span>
-            <span class="order-product-price">459.00元×2</span>
-            <span class="order-product-total">￥918.00</span>
+            <span class="order-product-price">1999.00元×1</span>
+            <span class="order-product-total">￥1999.00</span>
           </div>
           <div class="order-product-bill-type">
             <span class="order-bill-one">发票类型</span>
@@ -76,7 +97,7 @@
 
         <div class="order-price">
           <span>商品总价：</span>
-          <span class="order-price-two"> 31.00元</span>
+          <span class="order-price-two"> 1999.00元</span>
         </div>
         <div class="order-price">
           <span>运费 ：</span>
@@ -88,7 +109,7 @@
         </div>
         <div class="order-total-price order-price">
           <span>合计：</span>
-          <span class="order-price-two order-total-two">￥31.00</span>
+          <span class="order-price-two order-total-two">￥1999.00</span>
         </div>
         <div class="order-go">
           <span @click="submit">去下单</span>
@@ -106,12 +127,24 @@ export default {
     return {
       flag: true,
       color: false,
+      address: {},
     };
   },
   methods: {
     submit() {
-      this.$router.push("/pay");
+      const location = {
+        name: "pay",
+      };
+      location.query = {
+        traceId: this.address.traceId,
+      };
+      this.$router.push(location);
     },
+  },
+  async mounted() {
+    const address = await Api("/product/addressList");
+    //if(address.traceId===this.$route.query.traceId){this.address = address;}
+    this.address = address;
   },
 };
 </script>
