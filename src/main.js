@@ -6,6 +6,7 @@ import store from "./store";
 Vue.config.productionTip = false;
 
 import "./style/Common.css";
+import './plugins/element.js'
 
 new Vue({
   render: (h) => h(App),
