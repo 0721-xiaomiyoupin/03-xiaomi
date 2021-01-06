@@ -2,251 +2,40 @@
   <div class="search">
     <div class="search-container">
       <!-- 有搜索结果的 -->
-      <!-- <div>
-        <div class="search-result">为您找到n条结果</div>
+      <div v-if="isShow">
+        <div class="search-result">为您找到{{ searchList.length }}条结果</div>
         <div class="search-allItem">
-          <div class="search-item">
+          <div
+            class="search-item"
+            v-for="(good, index) in searchList"
+            :key="index"
+            @click="toDetail(good.data && good.data.goodsInfo.gid)"
+          >
             <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
+              <img :src="good.data && good.data.goodsInfo.imgSquare" />
             </div>
             <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
+              {{ good.data && good.data.goodsInfo.name }}
             </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
+            <p class="search-item-price">
+              ¥{{ good.data && good.data.goodsInfo.marketPrice }}
             </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
-          </div>
-          <div class="search-item">
-            <div class="search-item-image">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/405fb6c8e837fa0af3bb335965401573.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              />
-            </div>
-            <p class="search-item-info">
-              COMO LIVING 石墨烯自发热阳绒COMO LIVING 石墨烯自发热阳绒COMO
-              LIVING 石墨烯自发热阳绒
-            </p>
-            <p class="search-item-price">¥199</p>
           </div>
         </div>
-        <div class="search-pagination">
+        <div class="search-pagination" v-if="searchList.length > 8">
           <el-pagination
             background
             layout="prev, pager, next"
-            :total="50"
+            :total="searchList.length"
+            :page-size="3"
             style="margin: 0 auto; width: 100%"
             hide-on-single-page
           >
           </el-pagination>
         </div>
-      </div> -->
+      </div>
       <!-- 无搜索结果的 -->
-      <div>
+      <div v-else>
         <div class="no-result">
           <div class="no-result-image"></div>
           <p>抱歉，暂无任何商品</p>
@@ -279,21 +68,41 @@ import { mapState, mapActions } from "vuex";
 export default {
   name: "Search",
   data() {
-    return {};
+    return {
+      isShow: true,
+    };
   },
   computed: {
     ...mapState({
       recommendList: (state) => state.search.recommendList,
+      searchList: (state) => state.search.searchList,
     }),
   },
   methods: {
-    ...mapActions(["getRecommentList"]),
-    get() {
-      console.log(this.recommendList);
+    ...mapActions(["getRecommentList", "getSearchList"]),
+    toDetail(id) {
+      const location = {
+        name: "detail",
+      };
+      const good = this.searchList.find(
+        (item) => item.data.goodsInfo.gid === id
+      );
+      //给location添加属性
+      location.query = {
+        gid: good.data.goodsInfo.gid,
+      };
+      //跳转到detail页面
+      this.$router.push(location);
     },
   },
   mounted() {
-    this.getRecommentList();
+    if (this.$route.query.keyword === "手机") {
+      this.getSearchList();
+      this.isShow = true;
+    } else {
+      this.getRecommentList();
+      this.isShow = false;
+    }
   },
 };
 </script>

@@ -56,7 +56,14 @@
       </div>
       <div style="display: flex">
         <span class="iconfont icon-search"></span>
-        <input type="text" name="" id="" placeholder="搜一搜" />
+        <input
+          type="text"
+          name=""
+          id=""
+          placeholder="搜一搜"
+          v-model="searchName"
+          @keyup.enter="search"
+        />
         <span class="iconfont icon-che-copy"></span>
       </div>
     </div>
@@ -68,8 +75,22 @@ export default {
   name: "Header",
   data() {
     return {
+      searchName: "",
       isLogin: true,
     };
+  },
+  methods: {
+    search() {
+      const location = {
+        name: "search",
+      };
+      if (this.searchName) {
+        location.query = {
+          keyword: this.searchName,
+        };
+      }
+      this.$router.push(location);
+    },
   },
 };
 </script>
