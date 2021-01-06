@@ -8,7 +8,14 @@
       </div>
       <div class="order-address">
         <p>收货地址</p>
-        <div>不会写留出来</div>
+        <div class="order-address-detail">
+          <div>姓名：&nbsp;&nbsp;&nbsp;<span>刘瑶</span></div>
+          <div>
+            地址：&nbsp;&nbsp;&nbsp;<span>刘瑶</span><span>刘瑶</span
+            ><span>刘瑶</span>
+          </div>
+          <div>编码：&nbsp;&nbsp;&nbsp;<span>刘瑶</span></div>
+        </div>
       </div>
       <div
         class="order-address-more"
@@ -137,6 +144,13 @@ body {
   margin-bottom: 15px;
   font-size: 19px;
   color: #333;
+}
+.order-address-detail div {
+  font-size: 18px;
+  padding: 5px 5px 5px;
+}
+.order-address-detail div span {
+  padding-right: 5px;
 }
 .order-address-more {
   margin-top: 15px;
