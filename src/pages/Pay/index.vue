@@ -57,8 +57,10 @@
         <h3 class="pay-method-tit">选择以下支付方式付款</h3>
         <h3 class="pay-method-pay">支付平台</h3>
         <ul class="pay-method-ul">
-          <li class="pay-method-li"><img src="./images/01order.png" /></li>
-          <li><img src="./images/02weixin.png" /></li>
+          <li class="pay-method-li" @click="submit">
+            <img src="./images/01order.png" />
+          </li>
+          <li @click="submit"><img src="./images/02weixin.png" /></li>
         </ul>
       </div>
     </div>
@@ -66,6 +68,7 @@
 </template>
 
 <script>
+import QRCode from "qrcode";
 import Api from "../../api/Api";
 export default {
   name: "Pay",
@@ -73,6 +76,41 @@ export default {
     return {
       pay: {},
     };
+  },
+  methods: {
+    submit() {
+      QRCode.toDataURL("./images/code.jpg")
+        .then((url) => {
+          this.$alert(`<img src='${url}'/>`, "请扫码支付", {
+            showClose: false, // 是否显示右上角关闭按钮
+            showCancelButton: true, // 是否显示取消按钮
+            confirmButtonText: "确认", // 成功按钮文字
+            cancelButtonText: "取消", // 取消按钮文字
+            center: true, // 全部居中布局
+            dangerouslyUseHTMLString: true, // 才会解析html
+          })
+            .then(() => {
+              // 点击了成功按钮
+              this.$message({
+                type: "success",
+                message: "成功!",
+              });
+              this.$router.replace("/home");
+            })
+            .catch(() => {
+              // 点击取消按钮
+              this.$message({
+                type: "info",
+                message: "已取消",
+              });
+              this.$router.replace("/home");
+            });
+        })
+        .catch(() => {
+          this.$message.error("支付遇到了问题，请重新试试");
+          this.$router.replace("/home");
+        });
+    },
   },
   async mounted() {
     const pay = await Api("/product/pay");
@@ -87,6 +125,9 @@ export default {
 html,
 body {
   width: 100%;
+}
+.el-message-box--center {
+  width: 260px !important;
 }
 .pay {
   width: 100%;
