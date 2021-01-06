@@ -1,0 +1,31 @@
+{
+  "traceId": "c7eee263e318b6594288063feb222499",
+  "code": 0,
+  "attachments": { "timestamp": "1609895000146" },
+  "data": {
+    "address": [
+      {
+        "area": { "name": "白纸坊街道", "id": 378001 },
+        "country": { "name": "中国大陆", "id": 1 },
+        "consignee": "刘瑶",
+        "address": "4059999",
+        "addTime": 1609736551,
+        "city": { "name": "北京市", "id": 36 },
+        "updateTime": 1609736551,
+        "remark": "default",
+        "tagName": "",
+        "isInvalid": false,
+        "addressId": "11000000163292021",
+        "zipcode": "100032",
+        "isDefault": 1,
+        "needEdit": false,
+        "province": { "name": "北京", "id": 2 },
+        "district": { "zipcode": "100032", "name": "西城区", "id": 378 },
+        "addressName": "",
+        "tel": "156****7839",
+        "usedCount": 0
+      }
+    ]
+  },
+  "message": "ok"
+}

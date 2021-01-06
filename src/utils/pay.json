@@ -1,0 +1,126 @@
+{
+  "traceId": "c7eee263e318b6594288063feb222499",
+  "code": 0,
+  "attachments": { "timestamp": "1609896125539" },
+  "data": {
+    "orderInfo": {
+      "vendorType": 1,
+      "addressInfo": {
+        "area": { "name": "白纸坊街道", "id": "378001" },
+        "zipCode": "100032",
+        "country": { "name": "中国大陆", "id": "1" },
+        "consignee": "刘瑶",
+        "address": "4059999",
+        "city": { "name": "北京市", "id": "36" },
+        "province": { "name": "北京", "id": "2" },
+        "district": { "name": "西城区", "id": "378" },
+        "tel": "156****7839"
+      },
+      "orderType": 0,
+      "invoiceInfo": {
+        "invoiceTypeName": "电子普通发票",
+        "invoiceUpdateStatus": false,
+        "invoiceType": 4,
+        "invoiceStatus": "NO_INVOICE",
+        "invoiceTitle": "个人",
+        "invoiceCompanyCode": ""
+      },
+      "statusInfo": {
+        "next": [
+          "CAN_NOT_REFOUND_APPLY",
+          "CANCEL_ORDER",
+          "CANCLE_ORDER",
+          "PAY_MONEY",
+          "EDIT_ORDER_TIME",
+          "EDIT_ORDER_ADDRESS"
+        ],
+        "statusName": "等待付款",
+        "status": 3,
+        "partialDeliver": false
+      },
+      "deliveryTime": "不限送货时间",
+      "orderId": "5210106309400337",
+      "youpinOrderId": "5210106309400337",
+      "ttl": "1609897013",
+      "userId": "2495450238",
+      "createTime": "1609896113",
+      "orderItemInfo": {
+        "unShippedList": [
+          {
+            "gid": "124779",
+            "goodsId": "2201600017",
+            "mid": "2201600017",
+            "img800s": "http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1587873484.42918039.jpg",
+            "pid": "168701",
+            "productCount": 1,
+            "productName": "小米10青春版 6GB+128GB 白桃乌龙",
+            "mode": 0,
+            "price": "1999.0",
+            "deliveryTimeDesc": "",
+            "imageUrl": "http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1587873484.42918039.jpg",
+            "gidName": "\"小米10青春版 6GB+128GB 白桃乌龙\"",
+            "attribute": "白桃乌龙  6GB+128GB ",
+            "receiveTimeDesc": "",
+            "productId": 11918,
+            "commodityId": "1201600021",
+            "subtotal": "1999.0",
+            "name": "小米10青春版 6GB+128GB 白桃乌龙",
+            "isSuit": false
+          },
+          {
+            "goodsId": "2202100038",
+            "mid": "2202100038",
+            "img800s": "http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1590139389.87797748.png",
+            "productCount": 1,
+            "productName": "小米双动圈耳机 蓝色",
+            "mode": 23,
+            "price": "0.0",
+            "deliveryTimeDesc": "",
+            "imageUrl": "http://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1590139389.87797748.png",
+            "receiveTimeDesc": "",
+            "productId": 12163,
+            "commodityId": "1202100050",
+            "subtotal": "0.0",
+            "name": "小米双动圈耳机 蓝色",
+            "isSuit": false
+          }
+        ]
+      },
+      "orderPrice": {
+        "shipFee": "0",
+        "goodsOriginalAmount": "1999.00",
+        "paidPrice": "1999.00"
+      },
+      "payInfo": {
+        "payTime": "0",
+        "installmentDetails": [
+          {
+            "stageInterest": "0.0",
+            "stage": 3,
+            "rate": "0.0",
+            "interest": "0.0",
+            "stageCost": "666.33",
+            "totalCost": "1999.0"
+          },
+          {
+            "stageInterest": "0.0",
+            "stage": 6,
+            "rate": "0.0",
+            "interest": "0.0",
+            "stageCost": "333.16",
+            "totalCost": "1999.0"
+          },
+          {
+            "stageInterest": "12.49",
+            "stage": 12,
+            "rate": "7.5",
+            "interest": "149.92",
+            "stageCost": "179.07",
+            "totalCost": "2148.92"
+          }
+        ]
+      }
+    }
+  },
+  "message": "ok"
+}

@@ -10,33 +10,31 @@
         <div class="pay-info">
           <div class="pay-title">订单提交成功！去付款咯～</div>
           <p class="pay-warn">请在14分钟内完成支付, 超时后将取消订单</p>
-          <ul class="pay-detail">
+          <ul class="pay-detail" v-if="pay.data">
             <li>
               <span>订单编号：</span>
-              <span>5210104247503441</span>
+              <span>{{ pay.traceId }}</span>
             </li>
             <li>
               <span>订单价格：</span>
-              <span class="pay-price">1599.00元</span>
+              <span class="pay-price"
+                >{{ pay.data.orderInfo.orderPrice.paidPrice }}元</span
+              >
             </li>
             <li>
               <span>收货信息：</span>
-              <span>刘瑶</span>
-              <span>156****7839</span>
-              <span>北京</span>
-              <span>北京市</span>
-              <span>西城区</span>
-              <span>4059999</span>
+              <span>{{ pay.data.orderInfo.addressInfo.consignee }}</span>
+              <span>{{ pay.data.orderInfo.addressInfo.province.name }}</span>
+              <span>{{ pay.data.orderInfo.addressInfo.city.name }}</span>
+              <span>{{ pay.data.orderInfo.addressInfo.district.name }}</span>
+              <span>{{ pay.data.orderInfo.addressInfo.area.name }}</span>
+              <span>{{ pay.data.orderInfo.addressInfo.address }}</span>
             </li>
             <li>
-              <span>商品名称</span>
-              <span>Redmi</span>
-              <span>Note</span>
-              <span>9</span>
-              <span> Pro</span>
-              <span>5G</span>
-              <span>6GB+128G</span>
-              <span>碧海星辰</span>
+              <span>商品名称 ：&nbsp;&nbsp;&nbsp;</span>
+              <span>{{
+                pay.data.orderInfo.orderItemInfo.unShippedList[0].productName
+              }}</span>
             </li>
             <li>
               <span>配送时间： </span>
@@ -68,8 +66,20 @@
 </template>
 
 <script>
+import Api from "../../api/Api";
 export default {
   name: "Pay",
+  data() {
+    return {
+      pay: {},
+    };
+  },
+  async mounted() {
+    const pay = await Api("/product/pay");
+    if (pay.traceId === this.$route.query.traceId) {
+      this.pay = pay;
+    }
+  },
 };
 </script>
 
