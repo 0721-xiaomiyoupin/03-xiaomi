@@ -14,7 +14,7 @@
                 </span>
               </div>
             </div>
-            <h2>{{ c1[1].name }}</h2>
+            <!-- <h2>{{ c1[1].name }}</h2> -->
             <div class="Categoty2">
               <h3>二级分类</h3>
               <div class="Categoty3">

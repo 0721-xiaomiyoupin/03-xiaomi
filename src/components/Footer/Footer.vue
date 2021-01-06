@@ -22,8 +22,8 @@
 
 <script>
 export default {
-  name: 'Footer',
-}
+  name: "Footer",
+};
 </script>
 
 <style lang="less">
@@ -36,8 +36,9 @@ export default {
     width: 1000px;
     margin: 0 auto;
     display: flex;
-    padding-top: 30px;
+    padding: 30px;
     justify-content: space-between;
+    align-items: center;
     img {
       height: 40px;
     }

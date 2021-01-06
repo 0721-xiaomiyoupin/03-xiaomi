@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <!-- 头部 -->
-    <Header />
-
     <!-- banner -->
     <div class="banner-nav container clearfix">
       <div style="width: 220px; height: 360px">
@@ -408,20 +405,11 @@
         </div>
       </div> -->
     </div>
-
-    <!-- 尾部 -->
-    <Footer />
-
-    <!-- 侧边栏 -->
-    <Menu />
   </div>
 </template>
 
 <script>
-import Header from "../../components/Header/Header";
 import Categoty from "../../components/Category/Categoty";
-import Footer from "../../components/Footer/Footer";
-import Menu from "../../components/Menu/Menu";
 import request from "../../api/Api";
 import "swiper/swiper-bundle.css";
 import Swiper, { Navigation, Autoplay } from "swiper";
@@ -498,9 +486,6 @@ export default {
     this.initSwiper();
   },
   components: {
-    Menu,
-    Header,
-    Footer,
     Categoty,
   },
 };
