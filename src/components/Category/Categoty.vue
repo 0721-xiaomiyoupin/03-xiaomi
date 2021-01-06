@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import api from '../../api/index'
+import api from '../../api/Api'
 export default {
   name: 'Category',
   data() {

@@ -15,35 +15,53 @@
           </div>
 
           <!-- 登陆用表单 -->
-          <form action="" v-if="isPhone">
-            <input type="text" name="user" placeholder="邮箱/手机密码/小米ID" />
-            <input type="password" name="password" placeholder="密码" />
+          <form v-on:submit.prevent="submit" v-if="phoneLogin">
+            <input
+              type="text"
+              name="user"
+              placeholder="邮箱/手机密码/小米ID"
+              v-model="user.phone"
+            />
+            <span
+              style="color: red; position: absolute; top: 176px; left: 610px"
+              >随便输丶东西</span
+            >
+            <input
+              type="password"
+              name="password"
+              placeholder="密码"
+              v-model="user.password"
+            />
+            <span
+              style="color: red; position: absolute; top: 246px; left: 610px"
+              >反正没写接口</span
+            >
             <button>登陆</button>
             <div class="div1">
-              <a href="">手机短信登陆/注册</a>
+              <span @click="phoneLogin = false">手机短信登陆/注册</span>
             </div>
             <div class="div2">
-              <a href="">立即注册</a>
+              <span>立即注册</span>
               |
-              <a href="">忘记密码？</a>
+              <span>忘记密码？</span>
             </div>
           </form>
           <!-- 手机登陆用表单 -->
-          <form class="register" v-else>
-            <el-input placeholder="手机号码" class="inputPhone">
-              <template slot="prepend">+86</template>
-            </el-input>
-            <el-input placeholder="短信验证码" class="inputQrcode">
-              <template slot="append">获取验证码</template>
-            </el-input>
+          <form class="register" v-show="!phoneLogin">
+            <div class="inputPhone">
+              <div>+86</div>
+              <input type="text" placeholder="手机号码" />
+            </div>
+            <div class="inputQrcode">
+              <input type="password" placeholder="验证码" />
+              <div>获取验证码</div>
+            </div>
             <button>登陆</button>
             <div class="div1">
-              <a href="">手机短信登陆/注册</a>
+              <span @click="phoneLogin = true">用户名密码登陆</span>
             </div>
             <div class="div2">
-              <a href="">立即注册</a>
-              |
-              <a href="">忘记密码？</a>
+              <span>收不到验证码？</span>
             </div>
           </form>
         </div>
@@ -77,16 +95,31 @@
 </template>
 
 <script>
+import api from '../../api/Api'
 export default {
   name: 'Login',
   data() {
     return {
-      isPhone: false,
+      phoneLogin: true,
       user: {
         phone: '',
         password: '',
       },
+      loginUser: {},
     }
+  },
+
+  methods: {
+    async submit() {
+      const result = await api('/product/login')
+      console.log(result)
+      this.loginUser = result.user[0]
+      console.log(this.loginUser)
+      localStorage.setItem('name', this.loginUser.name)
+      localStorage.setItem('token', this.loginUser.token)
+      localStorage.setItem('image', this.loginUser.image)
+      this.$router.push('/')
+    },
   },
 }
 </script>
@@ -168,36 +201,73 @@ export default {
         color: #fff;
         background-color: rgb(255, 103, 0);
         border: none;
+        cursor: pointer;
       }
       div {
         margin: 5px auto;
         text-align: center;
       }
       .div1 {
-        a {
+        span {
           color: rgb(255, 103, 0);
+          cursor: pointer;
         }
-        a:hover {
-          color: rgb(255, 103, 0) !important;
-          text-decoration: underline;
+        span:hover {
+          color: rgb(255, 103, 0);
         }
       }
       .div2 {
-        a {
+        span {
           color: #b0b0b0;
+          cursor: pointer;
         }
-        a:hover {
-          color: rgb(255, 103, 0) !important;
-          text-decoration: underline;
+        span:hover {
+          color: rgb(255, 103, 0);
         }
       }
     }
     .register {
       .inputPhone {
+        // border: 1px solid black;
+        display: flex;
+        margin: 10px auto;
         width: 356px;
+        height: 48px;
+        box-sizing: border-box;
+        input {
+          border-left: none;
+          margin: 0;
+        }
+        div {
+          height: 46px;
+          width: 70px;
+          text-align: center;
+          padding: 0;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          margin: 0;
+          line-height: 48px;
+        }
       }
       .inputQrcode {
+        display: flex;
         width: 356px;
+        height: 48px;
+        box-sizing: border-box;
+        input {
+          border-right: none;
+          margin: 0;
+        }
+        div {
+          height: 46px;
+          width: 150px;
+          text-align: center;
+          padding: 0;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          margin: 0;
+          line-height: 48px;
+          cursor: pointer;
+          color: skyblue;
+        }
       }
     }
     .loginFooter {

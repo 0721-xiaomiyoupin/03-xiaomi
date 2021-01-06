@@ -5,10 +5,6 @@ import "./plugins/element.js"
 import router from "./router/index"
 import "./plugins/directives"
 
-import * as API from './api/index'
-
-Vue.prototype.$API = API
-
 import "./assets/font/iconfont.css"
 
 Vue.config.productionTip = false;
