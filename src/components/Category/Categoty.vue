@@ -10,7 +10,7 @@
               <h3>{{ c2.name }}</h3>
               <div class="Categoty3">
                 <span v-for="c3 in c2.children" :key="c3.index">
-                  {{ '无数据' }}
+                  {{ "无数据" }}
                 </span>
               </div>
             </div>
@@ -32,29 +32,29 @@
 </template>
 
 <script>
-import api from '../../api/index'
+import api from "../../api/Api";
 export default {
-  name: 'Category',
+  name: "Category",
   data() {
     return {
       Category1: [],
       Category2: [],
       Category3: [],
-    }
+    };
   },
 
   async mounted() {
-    const result = await api('/product/categoryList')
-    console.log(result)
-    this.Category1 = result
+    const result = await api("/product/categoryList");
+    console.log(result);
+    this.Category1 = result;
 
     const result2 = await api(
-      '/product/cateDetailList?id=5d3a9a6c9bbe31fc2aa3958e'
-    )
-    console.log(result2)
-    this.Category2 = result2.children
+      "/product/cateDetailList?id=5d3a9a6c9bbe31fc2aa3958e"
+    );
+    console.log(result2);
+    this.Category2 = result2.children;
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
