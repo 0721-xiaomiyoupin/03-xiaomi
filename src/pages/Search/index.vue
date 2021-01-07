@@ -2,7 +2,7 @@
   <div class="search">
     <div class="search-container">
       <!-- 有搜索结果的 -->
-      <div v-if="isShow">
+      <div v-if="$route.query.keyword === '手机'">
         <div class="search-result">为您找到{{ searchList.length }}条结果</div>
         <div class="search-allItem">
           <div
@@ -67,11 +67,6 @@
 import { mapState, mapActions } from "vuex";
 export default {
   name: "Search",
-  data() {
-    return {
-      isShow: true,
-    };
-  },
   computed: {
     ...mapState({
       recommendList: (state) => state.search.recommendList,
@@ -98,10 +93,8 @@ export default {
   mounted() {
     if (this.$route.query.keyword === "手机") {
       this.getSearchList();
-      this.isShow = true;
     } else {
       this.getRecommentList();
-      this.isShow = false;
     }
   },
 };

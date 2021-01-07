@@ -12,6 +12,7 @@ import {
   Tabs,
   TabPane,
   Dialog,
+  Popover
 } from "element-ui";
 Vue.use(Pagination);
 Vue.use(Button);
@@ -23,6 +24,8 @@ Vue.use(InputNumber);
 Vue.use(Tabs);
 Vue.use(TabPane);
 Vue.use(Dialog);
+Vue.use(Popover);
 
 Vue.prototype.$message = Message;
 Vue.prototype.$alert = MessageBox.alert;
+

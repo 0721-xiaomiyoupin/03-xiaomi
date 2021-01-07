@@ -45,13 +45,11 @@ export default {
 
   async mounted() {
     const result = await api("/product/categoryList");
-    console.log(result);
     this.Category1 = result;
 
     const result2 = await api(
       "/product/cateDetailList?id=5d3a9a6c9bbe31fc2aa3958e"
     );
-    console.log(result2);
     this.Category2 = result2.children;
   },
 };

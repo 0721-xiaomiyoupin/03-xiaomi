@@ -29,7 +29,7 @@ VueRouter.prototype.replace = function(location, onComplete, onAbort) {
   return replace.call(this, location, onComplete, () => {});
 };
 Vue.use(VueRouter);
-export default new VueRouter({
+const router = new VueRouter({
   routes: [
     {
       path: "/",
@@ -79,3 +79,14 @@ export default new VueRouter({
     return { x: 0, y: 0 };
   },
 });
+const permissionPaths = ["/shopcart", "/order", "/pay"];
+router.beforeEach((to, from, next) => {
+  if (
+    permissionPaths.indexOf(to.path) > -1 &&
+    !window.localStorage.getItem("token")
+  ) {
+    next("/login");
+  }
+  next();
+});
+export default router;

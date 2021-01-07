@@ -6,9 +6,13 @@
         <Categoty />
       </div>
       <!-- 轮播图 -->
+      <!-- <div class="banner-box"> -->
+      <!-- <div class="banner-swiper"> -->
       <el-carousel :interval="5000" arrow="always">
         <el-carousel-item v-for="item in bannerList" :key="item.id">
-          <img class="ele-imgs" :src="item.imgUrl" alt="热门活动" />
+          <!-- <h3>{{ item }}</h3> -->
+          <!-- <div v-for="bannerimg in bannerList" :key="bannerimg.id"> -->
+          <img class="ele-imgs" v-lazy="item.imgUrl" alt="热门活动" />
           <!-- </div> -->
         </el-carousel-item>
       </el-carousel>
@@ -19,7 +23,7 @@
       <ul>
         <li v-for="menuItem in menuList" :key="menuItem.id">
           <div>
-            <img :src="menuItem.img" alt="" />
+            <img v-lazy="menuItem.img" alt="" />
           </div>
           <p>上新精选</p>
         </li>
@@ -39,7 +43,7 @@
         <div class="hot-body-for" v-for="hotItem in hotList" :key="hotItem.id">
           <div class="hot-bottom">
             <div class="hot-one clearfix">
-              <img :src="hotItem.img" alt="商品" />
+              <img v-lazy="hotItem.img" alt="商品" />
               <div class="hot-one-text">
                 <p class="pro-info">{{ hotItem.title }}</p>
                 <p class="pro-desc">{{ hotItem.desc }}</p>
@@ -81,7 +85,7 @@
             <div v-for="newItem in newsList" :key="newItem.id">
               <div class="swiperss-item">
                 <div class="swiper-item-img">
-                  <img :src="newItem.imgUrl" alt="" />
+                  <img v-lazy="newItem.imgUrl" alt="" />
                 </div>
                 <div class="swiper-item-text">
                   <p class="pro-info">{{ newItem.tital }}</p>
@@ -90,7 +94,7 @@
                   </p>
                   <div class="pro-price">
                     <span class="pro-unit">￥</span>
-                    <span class="m-num"> {{ newItem.price }}</span>
+                    <span class="m-num">3999</span>
                     <span class="pro-flag">起</span>
                   </div>
                 </div>
@@ -118,47 +122,45 @@
           v-for="recommendItem in recommendList"
           :key="recommendItem.id"
         >
-          <router-link to="/detail">
-            <div class="imgs">
-              <img :src="recommendItem.imgUrl" alt="商品" />
-              <p class="pro-desc descc">{{ recommendItem.desc }}</p>
-            </div>
-            <div class="recommend-box-con">
-              <div class="common-tag-con">
-                <div class="m-goods-common-tag-con">
-                  <span
-                    v-if="recommendItem.isNew === 'true'"
-                    class="common-tag-text"
-                    style="background-color: rgb(141, 186, 109)"
-                    >新品</span
-                  ><span
-                    v-if="recommendItem.isMe === 'true'"
-                    class="common-tag-text"
-                    style="background-color: rgb(255, 103, 1)"
-                    >小米自营</span
-                  >
-                  <span
-                    v-if="recommendItem.isKill === 'true'"
-                    class="common-tag-text"
-                    style="background-color: rgb(217, 107, 108)"
-                    >有品秒杀</span
-                  >
-                  <span
-                    v-if="recommendItem.isSpecial === 'true'"
-                    class="common-tag-text"
-                    style="background-color: rgb(217, 107, 108)"
-                    >特价</span
-                  >
-                </div>
-              </div>
-              <p class="pro-info xiaomi">{{ recommendItem.tital }}</p>
-              <div class="pro-price pricee">
-                <span class="pro-unit">￥</span>
-                <span class="m-num">{{ recommendItem.price }}</span>
-                <span class="pro-flag">起</span>
+          <div class="imgs">
+            <img v-lazy="recommendItem.imgUrl" alt="商品" />
+            <p class="pro-desc descc">{{ recommendItem.desc }}</p>
+          </div>
+          <div class="recommend-box-con">
+            <div class="common-tag-con">
+              <div class="m-goods-common-tag-con">
+                <span
+                  v-if="recommendItem.isNew === 'true'"
+                  class="common-tag-text"
+                  style="background-color: rgb(141, 186, 109)"
+                  >新品</span
+                ><span
+                  v-if="recommendItem.isMe === 'true'"
+                  class="common-tag-text"
+                  style="background-color: rgb(255, 103, 1)"
+                  >小米自营</span
+                >
+                <span
+                  v-if="recommendItem.isKill === 'true'"
+                  class="common-tag-text"
+                  style="background-color: rgb(217, 107, 108)"
+                  >有品秒杀</span
+                >
+                <span
+                  v-if="recommendItem.isSpecial === 'true'"
+                  class="common-tag-text"
+                  style="background-color: rgb(217, 107, 108)"
+                  >特价</span
+                >
               </div>
             </div>
-          </router-link>
+            <p class="pro-info xiaomi">{{ recommendItem.tital }}</p>
+            <div class="pro-price pricee">
+              <span class="pro-unit">￥</span>
+              <span class="m-num">{{ recommendItem.price }}</span>
+              <span class="pro-flag">起</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -616,33 +618,6 @@ export default {
     font-size: 20px;
   }
 }
-.swiper-container {
-  --swiper-navigation-size: 30px;
-}
-.swiper-button-prev,
-.swiper-button-next {
-  border: none;
-  outline: 0;
-  padding: 0;
-  margin: 0;
-  height: 36px;
-  width: 36px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 50%;
-  color: rgba(31, 45, 61, 0.11);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-}
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  color: rgb(255, 255, 255);
-  opacity: 0.8;
-  background-color: rgb(224, 149, 51);
-}
 
 /deep/.el-carousel__container {
   width: 859px;
@@ -676,5 +651,32 @@ export default {
   background: #a7936e;
   border-radius: 500px;
   border: none;
+}
+.swiper-container {
+  --swiper-navigation-size: 30px;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  border: none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 50%;
+  color: rgba(31, 45, 61, 0.11);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+  background-color: rgb(224, 149, 51);
 }
 </style>

@@ -57,7 +57,7 @@
                 <h5>售价</h5>
                 <div class="price">
                   <span class="min">￥</span>
-                  <span class="big">{{ Totalprice }}</span>
+                  <span class="big">{{ price }}</span>
                   <span class="mins">￥2299</span>
                   <span class="bigs">特价</span>
                 </div>
@@ -454,7 +454,7 @@
       >
         <el-button
           type="primary"
-          @click="dialogVisible = false"
+          @click="toShopCart"
           style="background: #845f3f"
           >同意并继续</el-button
         >
@@ -486,10 +486,10 @@ export default {
     };
   },
   computed: {
-    // 总价
+    /*  // 总价
     Totalprice() {
       return this.num * this.price;
-    },
+    }, */
     // 转时间格式
     time() {
       return moment(this.detail.comment[0].data.list[0].ctime).format(
@@ -498,6 +498,16 @@ export default {
     },
   },
   methods: {
+    toShopCart() {
+      this.dialogVisible = false;
+      let location = {
+        name: "shopcart",
+      };
+      location.query = {
+        gid: this.detail.detail[0].gid,
+      };
+      this.$router.push(location);
+    },
     // Tab切换随着滚动条动而动完成
     handleScroll() {
       let scrollTop =

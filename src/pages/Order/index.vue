@@ -143,8 +143,9 @@ export default {
   },
   async mounted() {
     const address = await Api("/product/addressList");
-    //if(address.traceId===this.$route.query.traceId){this.address = address;}
-    this.address = address;
+    if (address.traceId === this.$route.query.traceId) {
+      this.address = address;
+    }
   },
 };
 </script>
