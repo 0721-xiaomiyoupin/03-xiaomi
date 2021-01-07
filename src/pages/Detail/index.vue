@@ -201,8 +201,15 @@
                     .introExt[0].imagesArray"
                   :key="index"
                 >
-                  <img :src="item" alt="" /></div
-              ></el-tab-pane>
+                  <img :src="item" alt="" />
+                </div>
+                <div>
+                  <img
+                    src="https://img.youpin.mi-img.com/editor1/34d9309abc25227d26891dddcdf946d0.png?w=1080&h=510"
+                    alt=""
+                  />
+                </div>
+              </el-tab-pane>
               <el-tab-pane label="评论" name="second">
                 <div class="main-body">
                   <div style>
@@ -499,7 +506,7 @@ export default {
         document.body.scrollTop;
       let offsetTop = document.querySelector(".el-tabs__header").offsetTop;
       let Tabs = document.querySelector(".el-tabs__header");
-      if (scrollTop - offsetTop > 50) {
+      if (scrollTop - offsetTop > 500) {
         this.isShow = true;
         Tabs.classList.add("active");
       } else {
@@ -986,7 +993,7 @@ export default {
   display: flex;
   .detail-content-left {
     width: 774px;
-    height: 10000px;
+    height: 32350px;
     margin-right: 40px;
     .detail-content-title {
       background: #e7e7e7;
