@@ -122,10 +122,12 @@
           v-for="recommendItem in recommendList"
           :key="recommendItem.id"
         >
-          <div class="imgs">
-            <img v-lazy="recommendItem.imgUrl" alt="商品" />
-            <p class="pro-desc descc">{{ recommendItem.desc }}</p>
-          </div>
+          <router-link to="/detail">
+            <div class="imgs">
+              <img v-lazy="recommendItem.imgUrl" alt="商品" />
+              <p class="pro-desc descc">{{ recommendItem.desc }}</p>
+            </div>
+          </router-link>
           <div class="recommend-box-con">
             <div class="common-tag-con">
               <div class="m-goods-common-tag-con">
@@ -188,28 +190,24 @@ export default {
     //首页大轮播图
     async onebanner() {
       const result = await request("/product/bannerList");
-      //console.log(result);
       this.bannerList = result;
     },
 
     //小米众筹热度
     async hot() {
       const result = await request("/product/crowdList");
-      //console.log(result);
       this.hotList = result;
     },
 
     //menu的列表数据
     async menu() {
       const result = await request("/product/menuList");
-      //   console.log(result);
       this.menuList = result;
     },
 
     //new的列表数据
     async new() {
       const result = await request("/product/newsList");
-      console.log(result);
       this.newsList = result;
     },
 

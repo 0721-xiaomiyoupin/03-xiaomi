@@ -53,8 +53,8 @@
 
 <script>
 export default {
-  name: 'Menu',
-}
+  name: "Menu",
+};
 </script>
 
 <style lang="less" scoped>
@@ -69,7 +69,7 @@ export default {
 
   /* border: 1px solid black; */
   background-color: #fff;
-
+  z-index: 10000;
   position: fixed;
   top: 20%;
   right: 20px;
@@ -118,6 +118,7 @@ export default {
       box-sizing: border-box;
       padding: 5px;
       img {
+        z-index: 1000;
         width: 100px;
         height: 100px;
       }
@@ -169,6 +170,7 @@ export default {
       .Hiddenbox {
         display: block;
         color: black;
+        background-color: #fff;
       }
       .download {
         display: block;

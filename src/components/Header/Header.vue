@@ -54,7 +54,9 @@
       @mouseleave="isHidden = false"
     >
       <div class="search">
-        <img src="../../assets/images/footer2.png" alt="" />
+        <router-link to="/home">
+          <img src="../../assets/images/footer2.png" alt="雷学林是***" />
+        </router-link>
         <div
           style="margin-left: -200px"
           v-show="buttonHidden"
