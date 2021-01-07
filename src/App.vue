@@ -2,7 +2,8 @@
   <div>
     <!-- 头部 -->
     <Header />
-    <Home />
+    <!-- <Home /> -->
+    <router-view></router-view>
     <!-- 尾部 -->
     <Footer />
     <!-- 侧边栏 -->
