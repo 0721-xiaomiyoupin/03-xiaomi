@@ -12,7 +12,7 @@
         <el-carousel-item v-for="item in bannerList" :key="item.id">
           <!-- <h3>{{ item }}</h3> -->
           <!-- <div v-for="bannerimg in bannerList" :key="bannerimg.id"> -->
-          <img class="ele-imgs" :src="item.imgUrl" alt="热门活动" />
+          <img class="ele-imgs" v-lazy="item.imgUrl" alt="热门活动" />
           <!-- </div> -->
         </el-carousel-item>
       </el-carousel>
@@ -23,46 +23,10 @@
       <ul>
         <li v-for="menuItem in menuList" :key="menuItem.id">
           <div>
-            <img :src="menuItem.img" alt="" />
+            <img v-lazy="menuItem.img" alt="" />
           </div>
           <p>上新精选</p>
         </li>
-        <!-- <li>
-          <div>
-            <img
-              src="https://img.youpin.mi-img.com/jianyu/24c86a799f3ea8ccfa675ff7563d50fb.png?w=126&h=126"
-              alt=""
-            />
-          </div>
-          <p>小米众筹</p>
-        </li>
-        <li>
-          <div>
-            <img
-              src="https://img.youpin.mi-img.com/jianyu/efb5e1c094c3e185d2add3e49bee0366.png?w=126&h=126"
-              alt=""
-            />
-          </div>
-          <p>优品秒杀</p>
-        </li>
-        <li>
-          <div>
-            <img
-              src="https://img.youpin.mi-img.com/jianyu/efb5e1c094c3e185d2add3e49bee0366.png?w=126&h=126"
-              alt=""
-            />
-          </div>
-          <p>热销榜到</p>
-        </li>
-        <li>
-          <div>
-            <img
-              src="https://img.youpin.mi-img.com/jianyu/efb5e1c094c3e185d2add3e49bee0366.png?w=126&h=126"
-              alt=""
-            />
-          </div>
-          <p>小米自营</p>
-        </li> -->
       </ul>
     </div>
 
@@ -79,7 +43,7 @@
         <div class="hot-body-for" v-for="hotItem in hotList" :key="hotItem.id">
           <div class="hot-bottom">
             <div class="hot-one clearfix">
-              <img :src="hotItem.img" alt="商品" />
+              <img v-lazy="hotItem.img" alt="商品" />
               <div class="hot-one-text">
                 <p class="pro-info">{{ hotItem.title }}</p>
                 <p class="pro-desc">{{ hotItem.desc }}</p>
@@ -103,36 +67,6 @@
             <div class="m-num">{{ hotItem.baifenbi }}%</div>
           </div>
         </div>
-        <!-- <div style="margin-left: 5px">
-          <div class="hot-bottom">
-            <div class="hot-one clearfix">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/e2ff4f4498d543f906a9ccf78eacf28c.png?w=800&h=800"
-                alt=""
-              />
-              <div class="hot-one-text">
-                <p class="pro-info">机械臂采耳棒</p>
-                <p class="pro-desc">1000W高精内窥镜，采镊两用款，6...</p>
-                <div class="pro-price">
-                  <span class="tag">￥</span>
-                  <span>199</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hot-one-bottom">
-            <div>
-              <span class="sup-num">1258</span
-              ><span class="sup-size">人支持</span
-              ><span
-                class="common-tag"
-                style="background-color: rgb(254, 207, 0)"
-                >热</span
-              >
-            </div>
-            <div class="m-num">113%</div>
-          </div>
-        </div> -->
       </div>
     </div>
 
@@ -151,15 +85,12 @@
             <div v-for="newItem in newsList" :key="newItem.id">
               <div class="swiperss-item">
                 <div class="swiper-item-img">
-                  <img
-                    src="https://img.youpin.mi-img.com/shopmain/5f535026c1020c6863e5c9c51f6f3ec9.jpg?w=800&h=800"
-                    alt=""
-                  />
+                  <img v-lazy="newItem.imgUrl" alt="" />
                 </div>
                 <div class="swiper-item-text">
-                  <p class="pro-info">小米11 轻装上阵</p>
+                  <p class="pro-info">{{ newItem.tital }}</p>
                   <p class="pro-desc" style="font-size: 14px">
-                    骁龙888处理器；2K AMOLED四曲...
+                    {{ newItem.desc }}
                   </p>
                   <div class="pro-price">
                     <span class="pro-unit">￥</span>
@@ -192,7 +123,7 @@
           :key="recommendItem.id"
         >
           <div class="imgs">
-            <img :src="recommendItem.imgUrl" alt="商品" />
+            <img v-lazy="recommendItem.imgUrl" alt="商品" />
             <p class="pro-desc descc">{{ recommendItem.desc }}</p>
           </div>
           <div class="recommend-box-con">
@@ -232,178 +163,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="recommend-img">
-        <div class="recommend-cons">
-          <div class="imgs">
-            <img
-              src="https://img.youpin.mi-img.com/shopmain/6505870edd5af8bf16a687b11eb20f90.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              alt=""
-            />
-            <p class="pro-desc descc">亲肤材质 舒适体验</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <span class="common-tag-text">新品</span>
-              <span class="common-tag-text">特价</span>
-            </div>
-            <p class="pro-info xiaomi">Emporio Armani 男士...</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">399</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-cons">
-          <div class="imgs">
-            <img
-              src="https://img.youpin.mi-img.com/shopmain/6505870edd5af8bf16a687b11eb20f90.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              alt=""
-            />
-            <p class="pro-desc descc">亲肤材质 舒适体验</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <span class="common-tag-text">新品</span>
-              <span class="common-tag-text">特价</span>
-            </div>
-            <p class="pro-info xiaomi">Emporio Armani 男士...</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">399</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-cons">
-          <div class="imgs">
-            <img
-              src="https://img.youpin.mi-img.com/shopmain/6505870edd5af8bf16a687b11eb20f90.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              alt=""
-            />
-            <p class="pro-desc descc">亲肤材质 舒适体验</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <span class="common-tag-text">新品</span>
-              <span class="common-tag-text">特价</span>
-            </div>
-            <p class="pro-info xiaomi">Emporio Armani 男士...</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">399</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-cons">
-          <div class="imgs">
-            <img
-              src="https://img.youpin.mi-img.com/shopmain/6505870edd5af8bf16a687b11eb20f90.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              alt=""
-            />
-            <p class="pro-desc descc">亲肤材质 舒适体验</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <span class="common-tag-text">新品</span>
-              <span class="common-tag-text">特价</span>
-            </div>
-            <p class="pro-info xiaomi">Emporio Armani 男士...</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">399</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="recommend-img">
-        <div class="recommend-cons">
-          <div class="imgs">
-            <img
-              src="https://img.youpin.mi-img.com/shopmain/599f6d301a511d186c9573a065002942.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              alt=""
-            />
-            <p class="pro-desc descc">拒水拒油拒污，易打理，合体版型</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <span class="common-tag-text">新品</span>
-              <span class="common-tag-text">特价</span>
-            </div>
-            <p class="pro-info xiaomi">90分三防免烫全棉衬衫</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">249</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-cons">
-          <div class="imgs">
-            <img
-              src="https://img.youpin.mi-img.com/shopmain/599f6d301a511d186c9573a065002942.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              alt=""
-            />
-            <p class="pro-desc descc">拒水拒油拒污，易打理，合体版型</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <span class="common-tag-text">新品</span>
-              <span class="common-tag-text">特价</span>
-            </div>
-            <p class="pro-info xiaomi">90分三防免烫全棉衬衫</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">249</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-cons">
-          <div class="imgs">
-            <img
-              src="https://img.youpin.mi-img.com/shopmain/599f6d301a511d186c9573a065002942.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              alt=""
-            />
-            <p class="pro-desc descc">拒水拒油拒污，易打理，合体版型</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <span class="common-tag-text">新品</span>
-              <span class="common-tag-text">特价</span>
-            </div>
-            <p class="pro-info xiaomi">90分三防免烫全棉衬衫</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">249</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
-        </div>
-        <div class="recommend-cons">
-          <div class="imgs">
-            <img
-              src="https://img.youpin.mi-img.com/shopmain/599f6d301a511d186c9573a065002942.png@base@tag=imgScale&F=webp&h=800&w=800?w=800&h=800"
-              alt=""
-            />
-            <p class="pro-desc descc">拒水拒油拒污，易打理，合体版型</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <span class="common-tag-text">新品</span>
-              <span class="common-tag-text">特价</span>
-            </div>
-            <p class="pro-info xiaomi">90分三防免烫全棉衬衫</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">249</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>
@@ -892,5 +651,32 @@ export default {
   background: #a7936e;
   border-radius: 500px;
   border: none;
+}
+.swiper-container {
+  --swiper-navigation-size: 30px;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  border: none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 50%;
+  color: rgba(31, 45, 61, 0.11);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+  background-color: rgb(224, 149, 51);
 }
 </style>
