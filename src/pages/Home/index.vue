@@ -148,45 +148,47 @@
           v-for="recommendItem in recommendList"
           :key="recommendItem.id"
         >
-          <div class="imgs">
-            <img :src="recommendItem.imgUrl" alt="商品" />
-            <p class="pro-desc descc">{{ recommendItem.desc }}</p>
-          </div>
-          <div class="recommend-box-con">
-            <div class="common-tag-con">
-              <div class="m-goods-common-tag-con">
-                <span
-                  v-if="recommendItem.isNew === 'true'"
-                  class="common-tag-text"
-                  style="background-color: rgb(141, 186, 109)"
-                  >新品</span
-                ><span
-                  v-if="recommendItem.isMe === 'true'"
-                  class="common-tag-text"
-                  style="background-color: rgb(255, 103, 1)"
-                  >小米自营</span
-                >
-                <span
-                  v-if="recommendItem.isKill === 'true'"
-                  class="common-tag-text"
-                  style="background-color: rgb(217, 107, 108)"
-                  >有品秒杀</span
-                >
-                <span
-                  v-if="recommendItem.isSpecial === 'true'"
-                  class="common-tag-text"
-                  style="background-color: rgb(217, 107, 108)"
-                  >特价</span
-                >
+          <router-link to="/detail">
+            <div class="imgs">
+              <img :src="recommendItem.imgUrl" alt="商品" />
+              <p class="pro-desc descc">{{ recommendItem.desc }}</p>
+            </div>
+            <div class="recommend-box-con">
+              <div class="common-tag-con">
+                <div class="m-goods-common-tag-con">
+                  <span
+                    v-if="recommendItem.isNew === 'true'"
+                    class="common-tag-text"
+                    style="background-color: rgb(141, 186, 109)"
+                    >新品</span
+                  ><span
+                    v-if="recommendItem.isMe === 'true'"
+                    class="common-tag-text"
+                    style="background-color: rgb(255, 103, 1)"
+                    >小米自营</span
+                  >
+                  <span
+                    v-if="recommendItem.isKill === 'true'"
+                    class="common-tag-text"
+                    style="background-color: rgb(217, 107, 108)"
+                    >有品秒杀</span
+                  >
+                  <span
+                    v-if="recommendItem.isSpecial === 'true'"
+                    class="common-tag-text"
+                    style="background-color: rgb(217, 107, 108)"
+                    >特价</span
+                  >
+                </div>
+              </div>
+              <p class="pro-info xiaomi">{{ recommendItem.tital }}</p>
+              <div class="pro-price pricee">
+                <span class="pro-unit">￥</span>
+                <span class="m-num">{{ recommendItem.price }}</span>
+                <span class="pro-flag">起</span>
               </div>
             </div>
-            <p class="pro-info xiaomi">{{ recommendItem.tital }}</p>
-            <div class="pro-price pricee">
-              <span class="pro-unit">￥</span>
-              <span class="m-num">{{ recommendItem.price }}</span>
-              <span class="pro-flag">起</span>
-            </div>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>

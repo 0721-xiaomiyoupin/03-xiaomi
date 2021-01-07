@@ -24,8 +24,9 @@ export default {
 };
 </script>
 
-<style lang="less">
-#a {
-  height: 200px;
+<style>
+body {
+  padding-right: 0px !important;
+  overflow: hidden;
 }
 </style>

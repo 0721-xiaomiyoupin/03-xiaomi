@@ -46,7 +46,7 @@ export default new VueRouter({
       component: Search,
     },
     {
-      name: "detail",
+      name: "'Detail",
       path: "/detail",
       component: Detail,
     },
