@@ -24,8 +24,7 @@
           <li v-else>
             <el-button type="text" @click="open">
               <a href="javascript:void(0);" style="border: none">登陆 </a>
-
-              <a href=""> 注册 </a>
+              <a href="javascript:void(0);"> 注册 </a>
             </el-button>
           </li>
           <li><a href="##">帮助中心</a></li>
@@ -106,7 +105,7 @@ export default {
       `,
         '声明与政策',
         {
-          showClose: false, // 是否显示右上角关闭按钮
+          showClose: true, // 是否显示右上角关闭按钮
           showCancelButton: true, // 是否显示取消按钮
           confirmButtonText: '同意并继续', // 成功按钮文字
           cancelButtonText: '不同意', // 取消按钮文字

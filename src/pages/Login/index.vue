@@ -16,26 +16,39 @@
 
           <!-- 登陆用表单 -->
           <form v-on:submit.prevent="submit" v-if="phoneLogin">
-            <input
-              type="text"
-              name="user"
-              placeholder="邮箱/手机密码/小米ID"
-              v-model="user.phone"
-            />
-            <span
-              style="color: red; position: absolute; top: 176px; left: 610px"
-              >随便输丶东西</span
+            <ValidationProvider
+              rules="required|length|phone"
+              v-slot="{ errors }"
+              style="margin: 0 auto"
             >
-            <input
-              type="password"
-              name="password"
-              placeholder="密码"
-              v-model="user.password"
-            />
-            <span
-              style="color: red; position: absolute; top: 246px; left: 610px"
-              >反正没写接口</span
+              <input
+                type="text"
+                name="user"
+                placeholder="邮箱/手机密码/小米ID"
+                v-model="user.phone"
+              />
+              <span
+                style="color: red; position: absolute; top: 176px; left: 610px"
+                >{{ errors[0] }}</span
+              >
+            </ValidationProvider>
+            <ValidationProvider
+              rules="passLength"
+              v-slot="{ errors }"
+              style="margin: 0 auto"
             >
+              <input
+                type="password"
+                name="password"
+                placeholder="密码"
+                v-model="user.password"
+              />
+
+              <span
+                style="color: red; position: absolute; top: 246px; left: 610px"
+                >{{ errors[0] }}</span
+              >
+            </ValidationProvider>
             <button>登陆</button>
             <div class="div1">
               <span @click="phoneLogin = false">手机短信登陆/注册</span>
@@ -95,7 +108,37 @@
 </template>
 
 <script>
+import { ValidationProvider, extend } from 'vee-validate'
+import { required } from 'vee-validate/dist/rules'
 import api from '../../api/Api'
+
+extend('required', {
+  ...required,
+  message: '手机号必须要填写', // 错误信息
+})
+
+extend('length', {
+  validate(value) {
+    return value.length === 11
+  },
+  message: '长度必须为11位', // 错误信息
+})
+
+extend('phone', {
+  validate(value) {
+    return /^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])\d{8}$/.test(
+      value
+    )
+  },
+  message: '手机号不符合规范',
+})
+
+extend('passLength', {
+  validate(value) {
+    return value.length >= 6 && value.length <= 16
+  },
+  message: '密码长度为6-16位',
+})
 export default {
   name: 'Login',
   data() {
@@ -110,7 +153,16 @@ export default {
   },
 
   methods: {
+    // 登陆
     async submit() {
+      if (!this.user.phone) {
+        this.$message.error('请输入登陆账号')
+        return
+      }
+      if (!this.user.password) {
+        this.$message.error('请输入登陆密码')
+        return
+      }
       const result = await api('/product/login')
       console.log(result)
       this.loginUser = result.user[0]
@@ -120,6 +172,10 @@ export default {
       localStorage.setItem('image', this.loginUser.image)
       this.$router.push('/')
     },
+  },
+
+  components: {
+    ValidationProvider,
   },
 }
 </script>
@@ -230,7 +286,7 @@ export default {
       .inputPhone {
         // border: 1px solid black;
         display: flex;
-        margin: 10px auto;
+        margin: 10px auto 15px;
         width: 356px;
         height: 48px;
         box-sizing: border-box;
@@ -251,6 +307,7 @@ export default {
       .inputQrcode {
         display: flex;
         width: 356px;
+        margin-bottom: 10px;
         height: 48px;
         box-sizing: border-box;
         input {
