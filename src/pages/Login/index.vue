@@ -164,14 +164,17 @@ export default {
         return;
       }
       const result = await api("/product/login");
-      console.log(result);
       this.loginUser = result.user[0];
-      console.log(this.loginUser);
       localStorage.setItem("name", this.loginUser.name);
       localStorage.setItem("token", this.loginUser.token);
       localStorage.setItem("image", this.loginUser.image);
       //回退到上一次浏览的地方
-      this.$router.back();
+      const path = window.sessionStorage.getItem("path");
+      if (path === "tologin") {
+        this.$router.replace("/shopcart");
+      } else {
+        this.$router.back();
+      }
     },
   },
 
@@ -331,7 +334,8 @@ export default {
     .loginFooter {
       width: 358px;
       box-sizing: border-box;
-      margin: 30px auto 0px;
+      //margin: 30px auto 0px;
+      margin: 5px auto 0px;
       display: flex;
       // align-items: center;
       flex-direction: column;

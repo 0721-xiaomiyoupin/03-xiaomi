@@ -79,7 +79,7 @@
             v-model="searchName"
             @keyup.enter="search"
           />
-          <span class="iconfont icon-che-copy"></span>
+          <span class="iconfont icon-che-copy" @click="go"></span>
         </div>
       </div>
       <Category v-show="isHidden" />
@@ -104,6 +104,14 @@ export default {
     };
   },
   methods: {
+    go() {
+      const token = window.localStorage.getItem("token") || "";
+      if (token) {
+        this.$router.push("/shopcart");
+      } else {
+        this.$router.push("/tologin");
+      }
+    },
     search() {
       const location = {
         name: "search",

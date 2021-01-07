@@ -1,10 +1,15 @@
-.clearfix:before, .clearfix:after {
-    content: "";
-    display: block;
-    clear: both;
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .container {
-    width: 1080px;
-    margin: 0 auto;
+  width: 1080px;
+  margin: 0 auto;
+}
+body {
+  min-width: 1080px;
+  overflow: auto;
 }
