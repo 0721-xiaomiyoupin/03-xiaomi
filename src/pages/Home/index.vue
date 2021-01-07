@@ -63,36 +63,6 @@
             <div class="m-num">{{ hotItem.baifenbi }}%</div>
           </div>
         </div>
-        <!-- <div style="margin-left: 5px">
-          <div class="hot-bottom">
-            <div class="hot-one clearfix">
-              <img
-                src="https://img.youpin.mi-img.com/shopmain/e2ff4f4498d543f906a9ccf78eacf28c.png?w=800&h=800"
-                alt=""
-              />
-              <div class="hot-one-text">
-                <p class="pro-info">机械臂采耳棒</p>
-                <p class="pro-desc">1000W高精内窥镜，采镊两用款，6...</p>
-                <div class="pro-price">
-                  <span class="tag">￥</span>
-                  <span>199</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hot-one-bottom">
-            <div>
-              <span class="sup-num">1258</span
-              ><span class="sup-size">人支持</span
-              ><span
-                class="common-tag"
-                style="background-color: rgb(254, 207, 0)"
-                >热</span
-              >
-            </div>
-            <div class="m-num">113%</div>
-          </div>
-        </div> -->
       </div>
     </div>
 

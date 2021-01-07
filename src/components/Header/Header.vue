@@ -5,12 +5,11 @@
         <div></div>
         <ul>
           <li v-if="isLogin" class="user">
-            <div>
-              <span
-                class="iconfont icon-touxiang"
-                style="margin-right: 10px"
-              ></span>
-              <span>用户名 </span>
+            <div class="userBox">
+              <div class="userImage">
+                <img :src="user.image" alt="" />
+              </div>
+              <span>{{ user.name }} </span>
               <span class="iconfont icon-icon1"></span>
               <ul>
                 <li>我的订单</li>
@@ -18,15 +17,14 @@
                 <li>我的资产</li>
                 <li>我的收藏</li>
                 <li>地址管理</li>
-                <li @click="isLogin = false">退出登录</li>
+                <li @click="clearToken">退出登录</li>
               </ul>
             </div>
           </li>
           <li v-else>
             <el-button type="text" @click="open">
               <a href="javascript:void(0);" style="border: none">登陆 </a>
-
-              <a href=""> 注册 </a>
+              <a href="javascript:void(0);"> 注册 </a>
             </el-button>
           </li>
           <li><a href="##">帮助中心</a></li>
@@ -97,6 +95,10 @@ export default {
       isHidden: false,
       buttonHidden: false,
       searchName: "",
+      user: {
+        name: "",
+        image: "",
+      },
     };
   },
   methods: {
@@ -122,7 +124,7 @@ export default {
       `,
         "声明与政策",
         {
-          showClose: false, // 是否显示右上角关闭按钮
+          showClose: true, // 是否显示右上角关闭按钮
           showCancelButton: true, // 是否显示取消按钮
           confirmButtonText: "同意并继续", // 成功按钮文字
           cancelButtonText: "不同意", // 取消按钮文字
@@ -131,7 +133,7 @@ export default {
         }
       )
         .then(() => {
-          console.log(this);
+          this.$router.push("/login");
         })
         .catch(() => {
           console.log("未同意协议不允许登陆");
@@ -150,9 +152,22 @@ export default {
         this.buttonHidden = false;
       }
     },
+    // 清除token
+    clearToken() {
+      localStorage.removeItem("token");
+      location.reload([true]);
+    },
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
+    // 查看是否有token
+    if (localStorage.getItem("token")) {
+      this.isLogin = true;
+      this.user.name = localStorage.getItem("name");
+      this.user.image = localStorage.getItem("image");
+    } else {
+      this.isLogin = false;
+    }
   },
   components: {
     Category,
@@ -161,6 +176,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.header a {
+  color: #fff;
+}
+.header a span {
+  color: #fff;
+}
 .header {
   height: 48px;
   width: 100%;
@@ -195,8 +216,21 @@ export default {
       }
       .user {
         font-size: 14px;
-        div {
+        .userBox {
           position: relative;
+          // border: 1px solid #fff;
+          display: flex;
+          align-items: center;
+          .userImage {
+            width: 35px;
+            height: 35px;
+            margin: 0 5px;
+            img {
+              width: 35px;
+              height: 35px;
+              border-radius: 50%;
+            }
+          }
           ul {
             position: absolute;
             top: 48px;
