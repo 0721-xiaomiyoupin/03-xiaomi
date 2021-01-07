@@ -108,76 +108,77 @@
 </template>
 
 <script>
-import { ValidationProvider, extend } from 'vee-validate'
-import { required } from 'vee-validate/dist/rules'
-import api from '../../api/Api'
+import { ValidationProvider, extend } from "vee-validate";
+import { required } from "vee-validate/dist/rules";
+import api from "../../api/Api";
 
-extend('required', {
+extend("required", {
   ...required,
-  message: '手机号必须要填写', // 错误信息
-})
+  message: "手机号必须要填写", // 错误信息
+});
 
-extend('length', {
+extend("length", {
   validate(value) {
-    return value.length === 11
+    return value.length === 11;
   },
-  message: '长度必须为11位', // 错误信息
-})
+  message: "长度必须为11位", // 错误信息
+});
 
-extend('phone', {
+extend("phone", {
   validate(value) {
     return /^(13[0-9]|14[01456879]|15[0-3,5-9]|16[2567]|17[0-8]|18[0-9]|19[0-3,5-9])\d{8}$/.test(
       value
-    )
+    );
   },
-  message: '手机号不符合规范',
-})
+  message: "手机号不符合规范",
+});
 
-extend('passLength', {
+extend("passLength", {
   validate(value) {
-    return value.length >= 6 && value.length <= 16
+    return value.length >= 6 && value.length <= 16;
   },
-  message: '密码长度为6-16位',
-})
+  message: "密码长度为6-16位",
+});
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     return {
       phoneLogin: true,
       user: {
-        phone: '',
-        password: '',
+        phone: "",
+        password: "",
       },
       loginUser: {},
-    }
+    };
   },
 
   methods: {
     // 登陆
     async submit() {
       if (!this.user.phone) {
-        this.$message.error('请输入登陆账号')
-        return
+        this.$message.error("请输入登陆账号");
+        return;
       }
       if (!this.user.password) {
-        this.$message.error('请输入登陆密码')
-        return
+        this.$message.error("请输入登陆密码");
+        return;
       }
-      const result = await api('/product/login')
-      console.log(result)
-      this.loginUser = result.user[0]
-      console.log(this.loginUser)
-      localStorage.setItem('name', this.loginUser.name)
-      localStorage.setItem('token', this.loginUser.token)
-      localStorage.setItem('image', this.loginUser.image)
-      this.$router.push('/')
+      const result = await api("/product/login");
+      console.log(result);
+      this.loginUser = result.user[0];
+      console.log(this.loginUser);
+      localStorage.setItem("name", this.loginUser.name);
+      localStorage.setItem("token", this.loginUser.token);
+      localStorage.setItem("image", this.loginUser.image);
+      //回退到上一次浏览的地方
+      this.$router.back();
     },
   },
 
   components: {
     ValidationProvider,
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
