@@ -1,25 +1,15 @@
 <template>
   <div>
-    <!-- <Detail /> -->
-    <!-- <ShopCart /> -->
-    <!-- <Home /> -->
-    <router-view></router-view>
-    <!-- <Footer /> -->
+    <ShopCart />
   </div>
 </template>
 
 <script>
-import Home from './components/Home';
-import Footer from './components/Footer';
-// import Detail from './pages/Detail';
-// import ShopCart from './pages/ShopCart';
+import ShopCart from './pages/ShopCart';
 export default {
   name: 'App',
   components: {
-    Home,
-    Footer,
-    // ShopCart,
-    // Detail,
+    ShopCart,
   },
 };
 </script>

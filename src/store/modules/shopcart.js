@@ -26,7 +26,7 @@ const mutations = {
   changeSelected (state, { cart, index }) {
     //做判断是否选中
     const checked = cart.checked === true ? false : true;
-    console.log(checked, index)
+    //console.log(checked, index)
     state.shopCartList[index].checked = checked
   },
   //切换全选按钮

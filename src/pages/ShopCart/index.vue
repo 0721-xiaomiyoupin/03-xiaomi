@@ -2,7 +2,7 @@
   <div class="cartContainer">
     <div class="showCart">
       <div class="cartChange">
-        <span class="active"><router-link to="/">首页</router-link></span
+        <span class="active"><a>首页</a></span
         >>
         <span class="deactive"><a href="###">购物车</a></span>
       </div>
@@ -130,7 +130,7 @@
             </div> -->
           </div>
           <div class="btn">
-            <button class="btn" @click="toOrder()">去结算</button>
+            <button class="btn" @click="toOrder">去结算</button>
           </div>
         </div>
       </div>
@@ -146,6 +146,8 @@ export default {
   data() {
     return {
       traceId: 'c7eee263e318b6594288063feb222499',
+      isShowLogin: false,
+      isShowShoping: false,
     };
   },
   mounted() {
@@ -176,8 +178,8 @@ export default {
   computed: {
     ...mapState({
       shopCartList: (state) => state.shopCart.shopCartList,
-      isShowLogin: (state) => state.shopCart.isShowLogin,
-      isShowShoping: (state) => state.shopCart.isShowShoping,
+      // isShowLogin: (state) => state.shopCart.isShowLogin,
+      // isShowShoping: (state) => state.shopCart.isShowShoping,
     }),
     ...mapGetters(['totalNum', 'totalAmount', 'isCheckAll']),
   },
