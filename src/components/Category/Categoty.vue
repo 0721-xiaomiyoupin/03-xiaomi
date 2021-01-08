@@ -10,7 +10,7 @@
               <h3>{{ c2.name }}</h3>
               <div class="Categoty3">
                 <span v-for="c3 in c2.children" :key="c3.index">
-                  {{ c3.smallImgCard && c3.smallImgCard.name }}
+                  {{ (c3.smallImgCard && c3.smallImgCard.name) || "小米" }}
                 </span>
               </div>
             </div>
@@ -92,6 +92,7 @@ ul {
         margin: 10px 0;
         // border: 1px solid black;
         h3 {
+          width: 60px;
           margin-right: 20px;
         }
         .Categoty3 {
@@ -108,7 +109,7 @@ ul {
     }
 
     &:hover {
-      background-color: #ccc;
+      background-color: rgb(135, 109, 70);
       .Categoty1 {
         display: block;
       }

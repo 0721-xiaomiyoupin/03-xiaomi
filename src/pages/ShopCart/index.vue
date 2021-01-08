@@ -12,8 +12,8 @@
             <img src="./images/05.png" />
             <p>购物车还是空的</p>
           </div>
-          <div class="toLogin">
-            <router-link to="/">继续逛</router-link>
+          <div class="toLogin" @click="$router.push('/')">
+            <button class="btn1">继续逛</button>
           </div>
         </div>
         <div class="cart-main" v-else>
@@ -196,18 +196,17 @@ export default {
   margin-top: 21px;
   text-align: center;
 }
-.toLogin a {
-  display: inline-block;
-  width: 97px;
+.btn1 {
+  width: 100px;
   height: 43px;
   line-height: 43px;
   font-size: 18px;
   color: #666;
-  border: 1px solid #666;
+  outline: none;
 }
-.toLogin a:hover {
+.btn1:hover {
   background-color: rgb(134, 107, 68);
-  color: #ccc;
+  color: white;
 }
 input {
   margin-left: 10px;

@@ -10,8 +10,8 @@
         <img src="./images/04.png" />
         <p>登录后才能看到购物车商品哦~</p>
       </div>
-      <div class="toLogin">
-        <a @click="toLogin">去登录</a>
+      <div class="toLogin" @click="toLogin">
+        <button class="btn1">去登录</button>
       </div>
     </div>
   </div>
@@ -57,17 +57,16 @@ export default {
   margin-top: 21px;
   text-align: center;
 }
-.toLogin a {
-  display: inline-block;
-  width: 97px;
+.btn1 {
+  width: 100px;
   height: 43px;
   line-height: 43px;
   font-size: 18px;
   color: #666;
-  border: 1px solid #666;
+  outline: none;
 }
-.toLogin a:hover {
+.btn1:hover {
   background-color: rgb(134, 107, 68);
-  color: #ccc;
+  color: white;
 }
 </style>
