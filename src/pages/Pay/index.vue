@@ -3,7 +3,9 @@
     <div class="pay-container">
       <div class="pay-container-warp">
         <div class="pay-top">
-          <span class="pay-span-one"><a>首页</a>></span>
+          <span class="pay-span-one"
+            ><router-link to="/">首页</router-link>></span
+          >
           <span class="pay-span-two"><a>个人中心</a>></span>
           <span class="pay-span-last"><a>确认订单</a></span>
         </div>

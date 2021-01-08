@@ -23,7 +23,7 @@ export default {
   methods: {
     toLogin() {
       window.sessionStorage.setItem("path", this.$route.name);
-      this.$router.push("/login");
+      this.$router.replace("/login");
     },
   },
 };
