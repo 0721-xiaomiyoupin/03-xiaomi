@@ -3,7 +3,9 @@
     <div class="search-container">
       <!-- 有搜索结果的 -->
       <div v-if="$route.query.keyword === '手机'" v-loading="loading">
-        <div class="search-result">为您找到{{ searchList.length }}条结果</div>
+        <div class="search-result" v-show="searchList.length">
+          为您找到{{ searchList.length }}条结果
+        </div>
         <div class="search-allItem">
           <div
             class="search-item"
@@ -104,10 +106,12 @@ export default {
   },
   mounted() {
     // 搜索页面loading时长
-    this.time = setTimeout(() => {
-      this.getSearchList();
-      this.loading = false;
-    }, 1000);
+    if (this.$route.query.keyword === "手机") {
+      this.time = setTimeout(() => {
+        this.getSearchList();
+        this.loading = false;
+      }, 1000);
+    }
     this.getRecommentList();
   },
 };

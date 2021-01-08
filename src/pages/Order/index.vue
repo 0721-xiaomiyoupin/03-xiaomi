@@ -54,7 +54,7 @@
       <div class="order-info">
         <div class="order-info-title">
           <img src="./images/youpin.png" />
-          <span>有品精选</span>
+          <span>小米有品(特殊商品)</span>
         </div>
         <div class="order-info-container">
           <div class="order-info-product">
