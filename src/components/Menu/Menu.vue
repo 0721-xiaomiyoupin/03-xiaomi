@@ -22,7 +22,7 @@
         <span class="iconfont icon-qrcode1"></span>
         <p>下载APP</p>
         <div class="download">
-          <img src="../../assets/images/1.jpg" alt="" />
+          <img src="../../assets/images/code.jpg" alt="" />
           <p>这是一个二维码</p>
         </div>
       </li>
@@ -30,17 +30,17 @@
         <span class="iconfont icon-liwu"></span>
         <p>新人有礼</p>
         <div class="gift">
-          <img src="../../assets/images/1.jpg" alt="" />
-          <img src="../../assets/images/1.jpg" alt="" />
-          <p>这是两个二维码</p>
+          <img src="../../assets/images/footer1.png" alt="" />
+          <img src="../../assets/images/code.jpg" alt="" />
+          <p>扫码有礼</p>
         </div>
       </li>
       <li>
         <span class="iconfont icon-weixin"></span>
         <p>关注微信</p>
         <div class="wechatQrcode">
-          <img src="../../assets/images/1.jpg" alt="" />
-          <p>这是一个二维码</p>
+          <img src="../../assets/images/code.jpg" alt="" />
+          <p>请使用微信扫码</p>
         </div>
       </li>
       <li style="border: none" v-to-top id="top-bar">
@@ -84,6 +84,9 @@ export default {
     flex-direction: column;
     justify-content: center;
     font-size: 14px;
+    div {
+      background-color: #fff;
+    }
     .iconfont {
       font-size: 22px;
     }
@@ -98,6 +101,7 @@ export default {
       display: none;
       top: 5px;
       border: 1px solid rgba(0, 0, 0, 0.1);
+
       .phone {
         font-size: 20px;
         color: chocolate;

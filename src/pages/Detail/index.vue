@@ -167,9 +167,7 @@
             </div>
             <div class="btns">
               <div class="btn">
-                <button class="btn1" @click="dialogVisible = true">
-                  加入购物车
-                </button>
+                <button class="btn1" @click="avv">加入购物车</button>
                 <button class="btn2">立即购买</button>
               </div>
               <div class="btn3">
@@ -498,6 +496,18 @@ export default {
     },
   },
   methods: {
+    avv() {
+      if (localStorage.getItem("name")) {
+        let location = {
+          name: "shopcart",
+        };
+        location.query = {
+          gid: this.detail.detail[0].gid,
+        };
+        this.$router.push(location);
+      }
+      this.dialogVisible = true;
+    },
     toShopCart() {
       this.dialogVisible = false;
       let location = {

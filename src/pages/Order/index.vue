@@ -8,36 +8,43 @@
         <span class="order-span-two"><a>个人中心</a>></span>
         <span class="order-span-last"><a>确认页</a></span>
       </div>
-      <div class="order-address">
-        <p>收货地址</p>
-        <div class="order-address-detail" v-if="address.data">
-          <div>
-            姓名：&nbsp;&nbsp;&nbsp;<span>{{
-              address.data.address[0].consignee
-            }}</span>
-          </div>
-          <div>
-            地址：&nbsp;&nbsp;&nbsp;<span>{{
-              address.data.address[0].province.name
-            }}</span
-            ><span>({{ address.data.address[0].city.name }})</span
-            ><span
-              >{{ address.data.address[0].district.name
-              }}{{ address.data.address[0].area.name }}</span
-            >
-          </div>
-          <div>
-            电话：&nbsp;&nbsp;&nbsp;<span>{{
-              address.data.address[0].tel
-            }}</span>
-          </div>
-          <div>
-            编码：&nbsp;&nbsp;&nbsp;<span>{{
-              address.data.address[0].zipcode
-            }}</span>
+      <p style="font-size: 25px; margin-bottom: 10px">收货地址</p>
+      <div class="imgss">
+        <div class="order-address" style="padding: 10px" v-if="address.data">
+          <div
+            class="order-address-detail"
+            v-for="aaddress in address.data.address"
+            :key="aaddress.id"
+            @click="avtive(aaddress, address.data.address)"
+            :class="{ active: aaddress.isshow }"
+          >
+            <div>
+              姓名：&nbsp;&nbsp;&nbsp;<span>{{ aaddress.consignee }}</span>
+            </div>
+            <div>
+              地址：&nbsp;&nbsp;&nbsp;<span>{{
+                aaddress.province.name
+              }}</span
+              ><span>({{ aaddress.city.name }})</span
+              ><span
+                >{{ aaddress.district.name
+                }}{{ aaddress.area.name }}</span
+              >
+            </div>
+            <div>
+              电话：&nbsp;&nbsp;&nbsp;<span>{{
+                aaddress.tel
+              }}</span>
+            </div>
+            <div>
+              编码：&nbsp;&nbsp;&nbsp;<span>{{
+                aaddress.zipcode
+              }}</span>
+            </div>
           </div>
         </div>
       </div>
+
       <div
         class="order-address-more"
         :class="color ? 'colors' : ''"
@@ -96,21 +103,33 @@
         <p class="order-discount">无可用优惠券</p>
 
         <div class="order-price">
-          <span>商品总价：</span>
+          <span class="bold">商品总价：</span>
           <span class="order-price-two"> 1999.00元</span>
         </div>
         <div class="order-price">
-          <span>运费 ：</span>
+          <span class="bold">运费 ：</span>
           <span class="order-price-two"> 0.00元</span>
         </div>
         <div class="order-price">
-          <span>优惠：</span>
+          <span class="bold">优惠：</span>
           <span class="order-price-two"> 0.00元</span>
         </div>
         <div class="order-total-price order-price">
-          <span>合计：</span>
+          <span class="bold">合计：</span>
           <span class="order-price-two order-total-two">￥1999.00</span>
         </div>
+        <div style="float: right; font-size: 20px">
+          <div v-if="aaddress.province">
+            <span
+              >寄送至：{{ aaddress.province.name }}{{ aaddress.city.name
+              }}{{ aaddress.district.name }}{{ aaddress.area.name }}</span
+            >
+          </div>
+          <div v-if="aaddress.consignee">
+            <span>收货人：{{ aaddress.consignee }}{{ aaddress.tel }}</span>
+          </div>
+        </div>
+
         <div class="order-go">
           <span @click="submit">去下单</span>
         </div>
@@ -128,9 +147,17 @@ export default {
       flag: true,
       color: false,
       address: {},
+      aaddress: {},
     };
   },
   methods: {
+    avtive(a, b) {
+      b.forEach((c) => (c.isshow = false));
+      a.isshow = true;
+      console.log(a);
+      this.aaddress = a;
+    },
+
     submit() {
       const location = {
         name: "pay",
@@ -143,6 +170,7 @@ export default {
   },
   async mounted() {
     const address = await Api("/product/addressList");
+    console.log(address);
     if (address.traceId === this.$route.query.traceId) {
       this.address = address;
     }
@@ -177,14 +205,24 @@ body {
   margin: 0 6px;
   color: #999;
 }
+.order-address {
+  display: flex;
+}
 .order-address p {
   margin-bottom: 15px;
   font-size: 19px;
   color: #333;
 }
+.order-address-detail {
+  width: 400px;
+  height: 150px;
+  padding: 10px;
+  box-sizing: border-box;
+}
 .order-address-detail div {
   font-size: 18px;
   padding: 5px 5px 5px;
+  width: 400px;
 }
 .order-address-detail div span {
   padding-right: 5px;
@@ -365,7 +403,7 @@ body {
 .order-go {
   width: 1080px;
   text-align: right;
-  padding: 10px 0 50px;
+  padding: 60px 0 50px;
 }
 .order-go span {
   display: inline-block;
@@ -377,5 +415,21 @@ body {
   color: #fff;
   background-color: #845f3f;
   border-color: #845f3f;
+}
+.imgss .order-address-detail {
+  background: url("../../assets/images/T1VPiBXvpeXXbjLKQ7-237-106.png")
+    no-repeat;
+  background-size: 345px;
+  height: 150px;
+}
+.imgss .order-address-detail.active {
+  background: url("../../assets/images/TB1OVRCRpXXXXaMXFXXXXXXXXXX-237-106.png")
+    no-repeat;
+  background-size: 345px;
+  height: 150px;
+}
+.bold {
+  font-weight: 800;
+  font-size: 18px;
 }
 </style>

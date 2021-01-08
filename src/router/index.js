@@ -1,6 +1,18 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Order from "../pages/Order";
+const Order = () => import(/* webpackChunkName: "Order" */ "../pages/Order");
+const Pay = () => import(/* webpackChunkName: "Pay" */ "../pages/Pay");
+const Search = () => import(/* webpackChunkName: "Search" */ "../pages/Search");
+const Detail = () => import(/* webpackChunkName: "Detail" */ "../pages/Detail");
+const Home = () => import(/* webpackChunkName: "Home" */ "../pages/Home");
+const Login = () => import(/* webpackChunkName: "Login" */ "../pages/Login");
+const ShopCart = () =>
+  import(/* webpackChunkName: "ShopCart" */ "../pages/ShopCart");
+const ToLogin = () =>
+  import(/* webpackChunkName: "ToLogin" */ "../pages/ToLogin");
+const Reciprocal = () =>
+  import(/* webpackChunkName: "Reciprocal" */ "../pages/Reciprocal");
+/* import Order from "../pages/Order";
 import Pay from "../pages/Pay";
 import Search from "../pages/Search";
 import Detail from "../pages/Detail";
@@ -8,7 +20,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ShopCart from "../pages/ShopCart";
 import ToLogin from "../pages/ToLogin";
-import Reciprocal from "../pages/Reciprocal";
+import Reciprocal from "../pages/Reciprocal"; */
 
 const push = VueRouter.prototype.push;
 const replace = VueRouter.prototype.replace;

@@ -2,7 +2,7 @@
   <div class="search">
     <div class="search-container">
       <!-- 有搜索结果的 -->
-      <div v-if="$route.query.keyword === '手机'">
+      <div v-if="$route.query.keyword === '手机'" v-loading="loading">
         <div class="search-result">为您找到{{ searchList.length }}条结果</div>
         <div class="search-allItem">
           <div
@@ -48,6 +48,7 @@
               class="search-item"
               v-for="recommend in recommendList"
               :key="recommend.id"
+              @click="$router.push('/detail')"
             >
               <div class="search-item-image">
                 <img :src="recommend.imgUrl" />
@@ -67,6 +68,12 @@
 import { mapState, mapActions } from "vuex";
 export default {
   name: "Search",
+  data() {
+    return {
+      loading: true,
+      time: null,
+    };
+  },
   computed: {
     ...mapState({
       recommendList: (state) => state.search.recommendList,
@@ -90,12 +97,18 @@ export default {
       this.$router.push(location);
     },
   },
+  watch: {
+    loading() {
+      clearTimeout(this.time);
+    },
+  },
   mounted() {
-    if (this.$route.query.keyword === "手机") {
+    // 搜索页面loading时长
+    this.time = setTimeout(() => {
       this.getSearchList();
-    } else {
-      this.getRecommentList();
-    }
+      this.loading = false;
+    }, 1000);
+    this.getRecommentList();
   },
 };
 </script>
