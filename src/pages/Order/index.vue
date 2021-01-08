@@ -22,24 +22,15 @@
               姓名：&nbsp;&nbsp;&nbsp;<span>{{ aaddress.consignee }}</span>
             </div>
             <div>
-              地址：&nbsp;&nbsp;&nbsp;<span>{{
-                aaddress.province.name
-              }}</span
+              地址：&nbsp;&nbsp;&nbsp;<span>{{ aaddress.province.name }}</span
               ><span>({{ aaddress.city.name }})</span
-              ><span
-                >{{ aaddress.district.name
-                }}{{ aaddress.area.name }}</span
-              >
+              ><span>{{ aaddress.district.name }}{{ aaddress.area.name }}</span>
             </div>
             <div>
-              电话：&nbsp;&nbsp;&nbsp;<span>{{
-                aaddress.tel
-              }}</span>
+              电话：&nbsp;&nbsp;&nbsp;<span>{{ aaddress.tel }}</span>
             </div>
             <div>
-              编码：&nbsp;&nbsp;&nbsp;<span>{{
-                aaddress.zipcode
-              }}</span>
+              编码：&nbsp;&nbsp;&nbsp;<span>{{ aaddress.zipcode }}</span>
             </div>
           </div>
         </div>
@@ -74,8 +65,8 @@
               >
               <span class="order-product-support">支持七天无理由退款</span>
             </span>
-            <span class="order-product-price">1999.00元×1</span>
-            <span class="order-product-total">￥1999.00</span>
+            <span class="order-product-price">1999.00元×{{ totalNum }}</span>
+            <span class="order-product-total">￥{{ totalAmount }}.00</span>
           </div>
           <div class="order-product-bill-type">
             <span class="order-bill-one">发票类型</span>
@@ -104,7 +95,7 @@
 
         <div class="order-price">
           <span class="bold">商品总价：</span>
-          <span class="order-price-two"> 1999.00元</span>
+          <span class="order-price-two"> {{ totalAmount }}.00元</span>
         </div>
         <div class="order-price">
           <span class="bold">运费 ：</span>
@@ -116,7 +107,9 @@
         </div>
         <div class="order-total-price order-price">
           <span class="bold">合计：</span>
-          <span class="order-price-two order-total-two">￥1999.00</span>
+          <span class="order-price-two order-total-two"
+            >￥{{ totalAmount }}.00</span
+          >
         </div>
         <div style="float: right; font-size: 20px">
           <div v-if="aaddress.province">
@@ -140,6 +133,7 @@
 
 <script>
 import Api from "../../api/Api";
+import { mapGetters } from "vuex";
 export default {
   name: "Order",
   data() {
@@ -150,11 +144,13 @@ export default {
       aaddress: {},
     };
   },
+  computed: {
+    ...mapGetters(["totalNum", "totalAmount"]),
+  },
   methods: {
     avtive(a, b) {
       b.forEach((c) => (c.isshow = false));
       a.isshow = true;
-      console.log(a);
       this.aaddress = a;
     },
 
@@ -170,7 +166,6 @@ export default {
   },
   async mounted() {
     const address = await Api("/product/addressList");
-    console.log(address);
     if (address.traceId === this.$route.query.traceId) {
       this.address = address;
     }

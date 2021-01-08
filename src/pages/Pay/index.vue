@@ -19,9 +19,7 @@
             </li>
             <li>
               <span>订单价格：</span>
-              <span class="pay-price"
-                >{{ pay.data.orderInfo.orderPrice.paidPrice }}元</span
-              >
+              <span class="pay-price">{{ totalAmount }}元</span>
             </li>
             <li>
               <span>收货信息：</span>
@@ -72,12 +70,16 @@
 <script>
 import QRCode from "qrcode";
 import Api from "../../api/Api";
+import { mapGetters } from "vuex";
 export default {
   name: "Pay",
   data() {
     return {
       pay: {},
     };
+  },
+  computed: {
+    ...mapGetters(["totalAmount"]),
   },
   methods: {
     submit() {
