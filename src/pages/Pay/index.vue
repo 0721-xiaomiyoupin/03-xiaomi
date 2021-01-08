@@ -101,7 +101,7 @@ export default {
                 type: "success",
                 message: "支付成功!",
               });
-              this.$router.replace("/home");
+              this.$router.replace("/reciprocal");
             })
             .catch(() => {
               // 点击取消按钮

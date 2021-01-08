@@ -8,6 +8,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ShopCart from "../pages/ShopCart";
 import ToLogin from "../pages/ToLogin";
+import Reciprocal from "../pages/Reciprocal";
 
 const push = VueRouter.prototype.push;
 const replace = VueRouter.prototype.replace;
@@ -40,6 +41,14 @@ const router = new VueRouter({
       name: "tologin",
       path: "/tologin",
       component: ToLogin,
+    },
+    {
+      name: "reciprocal",
+      path: "/reciprocal",
+      component: Reciprocal,
+      meta: {
+        isFooterHide: true,
+      },
     },
     {
       name: "home",
