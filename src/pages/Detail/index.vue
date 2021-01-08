@@ -497,7 +497,7 @@ export default {
   },
   methods: {
     avv() {
-      if (localStorage.getItem("name")) {
+      if (localStorage.getItem("token")) {
         let location = {
           name: "shopcart",
         };
